@@ -48,29 +48,8 @@ export const defaultLayout = new FASTElementLayout(
           `,
   )}
         <div slot="menu-contents">
-          <!-- Example markup -->
-          <p>GROUP SLOT</p>
-          <zero-tree-view>
-              <zero-tree-item>
-                  <zero-icon variant="solid" name="location-arrow"></zero-icon>
-                  Slot Tree Item
-              </zero-tree-item>
-              <zero-tree-item>
-                  <zero-icon variant="solid" name="location-arrow"></zero-icon>
-                  Slot Tree Item
-              </zero-tree-item>
-          </zero-tree-view>
-          <p>GROUP SLOT 2</p>
-          <zero-tree-view>
-              <zero-tree-item>
-                  <zero-icon variant="solid" name="location-arrow"></zero-icon>
-                  Slot Tree Item 2
-              </zero-tree-item>
-              <zero-tree-item>
-                  <zero-icon variant="solid" name="location-arrow"></zero-icon>
-                  Slot Tree Item 2
-              </zero-tree-item>
-          </zero-tree-view>        
+          <!-- add menu items here -->
+          
         </div>
       </foundation-header>
       <div class="content">
