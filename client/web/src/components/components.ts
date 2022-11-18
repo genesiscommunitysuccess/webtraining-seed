@@ -1,51 +1,20 @@
-import { allComponents, provideFASTDesignSystem } from '@microsoft/fast-components';
-import { EntityManagement } from '@genesislcap/foundation-entity-management';
-import { FASTRouter } from '@microsoft/fast-router';
-import { zeroGridComponents } from '@genesislcap/foundation-zero-grid-pro';
-import { logger } from '../utils';
+import {EntityManagement} from '@genesislcap/foundation-entity-management';
+import {allComponents, provideFASTDesignSystem} from '@microsoft/fast-components';
+import {FASTRouter} from '@microsoft/fast-router';
+import {baseComponents as allAlhaComponents, provideDesignSystem as provideAlphaDesignSystem} from '../_ui-training-design-system';
 
-EntityManagement;
-
+// Loads FAST Design System
 provideFASTDesignSystem().register(allComponents);
 
-enum ResourceType {
-  LOCAL = 'LOCAL',
-  REMOTE = 'REMOTE',
+// Loads UI Training Design System (ui-training)
+provideAlphaDesignSystem().register(allAlhaComponents);
+
+export async function loadZeroAsync() {
+  const {baseComponents, provideDesignSystem} = await import('@genesislcap/foundation-zero');
+  const {zeroGridComponents} = await import('@genesislcap/foundation-zero-grid-pro');
+
+  provideDesignSystem().register(baseComponents, zeroGridComponents);
 }
 
-/**
- * TODO: Think about sharing import functions across micro frontends.
- */
-function loadZeroFallback() {
-  return import(
-    /* webpackMode: "lazy" */
-    '@genesislcap/foundation-zero'
-  );
-}
-
-/**
- * Granular
- */
-async function loadZeroDesignSystem() {
-  let type = ResourceType.REMOTE;
-  try {
-    // @ts-ignore
-    return await import('foundationZero/ZeroDesignSystem');
-  } catch (e) {
-    type = ResourceType.LOCAL;
-    return await loadZeroFallback();
-  } finally {
-    logger.debug(`Using '${type}' version of foundationZero/ZeroDesignSystem`);
-  }
-}
-
-export type LoadRemotesOptions = {};
-
-export async function loadRemotes() {
-  const { provideDesignSystem, baseComponents } = await loadZeroDesignSystem();
-  return {
-    ZeroDesignSystem: provideDesignSystem().register(baseComponents, zeroGridComponents),
-  };
-}
-
+EntityManagement;
 FASTRouter;

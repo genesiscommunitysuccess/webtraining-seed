@@ -1,5 +1,5 @@
-import { css, html, repeat } from '@microsoft/fast-element';
-import { FASTElementLayout } from '@microsoft/fast-router';
+import {css, html, repeat} from '@microsoft/fast-element';
+import {FASTElementLayout} from '@microsoft/fast-router';
 
 const baseLayoutCss = css`
   .container {
@@ -26,30 +26,51 @@ export const loginLayout = new FASTElementLayout(
       </div>
     </div>
   `,
-  baseLayoutCss
+  baseLayoutCss,
 );
 
 export const defaultLayout = new FASTElementLayout(
   html`
     <div class="container">
-      <foundation-header>
+      <foundation-header logo-src="https://icotar.com/avatar/webtraining" show-luminance-toggle-button>
         ${repeat(
-          (x) => x.config.allRoutes,
-          html`
+    x => x.config.allRoutes,
+    html`
             <zero-button
               appearance="neutral-grey"
               slot="routes"
-              value="${(x) => x.index}"
+              value="${x => x.index}"
               @click=${(x, c) => c.parent.navigation.navigateTo(x.path)}
             >
-              <zero-icon variant="${(x) => x.variant}" name="${(x) => x.icon}"></zero-icon>
-              ${(x) => x.title}
+              <zero-icon variant="${x => x.variant}" name="${x => x.icon}"></zero-icon>
+              ${x => x.title}
             </zero-button>
-          `
-        )}
+          `,
+  )}
         <div slot="menu-contents">
-        <!-- add menu items here -->
-        
+          <!-- Example markup -->
+          <p>GROUP SLOT</p>
+          <zero-tree-view>
+              <zero-tree-item>
+                  <zero-icon variant="solid" name="location-arrow"></zero-icon>
+                  Slot Tree Item
+              </zero-tree-item>
+              <zero-tree-item>
+                  <zero-icon variant="solid" name="location-arrow"></zero-icon>
+                  Slot Tree Item
+              </zero-tree-item>
+          </zero-tree-view>
+          <p>GROUP SLOT 2</p>
+          <zero-tree-view>
+              <zero-tree-item>
+                  <zero-icon variant="solid" name="location-arrow"></zero-icon>
+                  Slot Tree Item 2
+              </zero-tree-item>
+              <zero-tree-item>
+                  <zero-icon variant="solid" name="location-arrow"></zero-icon>
+                  Slot Tree Item 2
+              </zero-tree-item>
+          </zero-tree-view>        
         </div>
       </foundation-header>
       <div class="content">
@@ -78,5 +99,5 @@ export const defaultLayout = new FASTElementLayout(
       color: #879ba6;
       padding-right: 10px;
     }
-  `
+  `,
 );
