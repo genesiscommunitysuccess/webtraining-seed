@@ -32,7 +32,7 @@ export const loginLayout = new FASTElementLayout(
 export const defaultLayout = new FASTElementLayout(
   html`
     <div class="container">
-      <foundation-header logo-src="https://icotar.com/avatar/webtraining" show-luminance-toggle-button>
+      <foundation-header>
         ${repeat(
     x => x.config.allRoutes,
     html`
