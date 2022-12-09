@@ -2,7 +2,7 @@
 
 Initial project for Genesis Application to support [web developer training](https://docs.genesis.global/secure/getting-started/web-training/training-intro/). If you want to see the complete application built during the training use this [repo](https://github.com/genesiscommunitysuccess/webtraining-alpha) as a reference.
 
-# Building, Running and Testing
+# Building and Running
 From the command line, cd into the root directory of the project and then follow these steps.
 
 ## Build
@@ -28,9 +28,6 @@ mon
 ```
 
 Feel free to keep running `mon` until all services are RUNNING.
-
-## Test
-Allow up to 5 mins for all the services to be up and running, then open your browser and navigate to http://localhost:6060
 
 # Start the training 
 
