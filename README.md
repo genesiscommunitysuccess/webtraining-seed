@@ -17,9 +17,15 @@ docker-compose build
 docker-compose up -d
 ```
 
-Now log into the `gsf` container:
+Attach a terminal to the `gsf` Docker container:
 ```shell
 docker exec -it gsf bash
+```
+Alternatively, you can use Docker Desktop Integrated Terminal for the containers you have just created (as explained [here](https://www.docker.com/blog/integrated-terminal-for-running-containers-extended-integration-with-containerd-and-more-in-docker-desktop-4-12/))
+
+Now try logging in as alpha 
+```shell
+su - alpha
 ```
 
 Check if all services are running:
