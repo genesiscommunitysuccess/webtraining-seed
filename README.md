@@ -1,35 +1,40 @@
-# alpha
+# webtraining-seed
 
-Answer-key of the Developer Training. This is the complete application built during the training and can be used as a reference for the training.
+Initial project for Genesis Application to support [web developer training](https://docs.genesis.global/secure/getting-started/web-training/training-intro/). If you want to see the complete application built during the training use this [repo](https://github.com/genesiscommunitysuccess/webtraining-alpha) as a reference.
 
 # Building, Running and Testing
 From the command line, cd into the root directory of the project and then follow these steps.
 
 ## Build
-Run:
-1. ./gradlew assemble
+```shell
+./gradlew assemble
+```
 
 ## Run
 Make sure Docker is running on your machine and run:
-1. docker-compose up -d
+```shell
+docker-compose build
+docker-compose up -d
+```
 
 Now log into the `gsf` container:
-2. docker exec -it gsf bash
+```shell
+docker exec -it gsf bash
+```
 
-and load the reference data:
-3. su - alpha
-4. cd /home/alpha/run/site-specific/data
-5. SendIt -a
-(make sure answer Yes to the command prompt)
-6. SetPrimary
-(make sure answer Yes to the command prompt)
+Check if all services are running:
+```shell
+mon
+```
 
-check if all services are running:
-7. mon
 Feel free to keep running `mon` until all services are RUNNING.
 
 ## Test
 Allow up to 5 mins for all the services to be up and running, then open your browser and navigate to http://localhost:6060
+
+# Start the training 
+
+Go to the web developer training and follow the [agenda](https://docs.genesis.global/secure/getting-started/web-training/training-intro/#programme). There are 4 sessions or days; each session covers specific resources of the platform to extend the application that you built in the initial [Developer Training](https://docs.genesis.global/secure/getting-started/developer-training/training-intro/).
 
 # License
 
