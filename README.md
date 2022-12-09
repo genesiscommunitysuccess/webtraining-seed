@@ -21,7 +21,7 @@ docker-compose up -d
 ```shell
 docker exec -it gsf bash
 ```
-  * Alternatively, you can use Docker Desktop Integrated Terminal for the containers you have just created (as explained [here](https://www.docker.com/blog/integrated-terminal-for-running-containers-extended-integration-with-containerd-and-more-in-docker-desktop-4-12/))
+  Alternatively, you can use Docker Desktop Integrated Terminal for the containers you have just created (as explained [here](https://www.docker.com/blog/integrated-terminal-for-running-containers-extended-integration-with-containerd-and-more-in-docker-desktop-4-12/))
 
 * Now try logging in as alpha 
 ```shell
@@ -32,7 +32,7 @@ su - alpha
 ```shell
 mon
 ```
-  * Feel free to keep running `mon` until all services are RUNNING.
+  Feel free to keep running `mon` until all services are RUNNING.
 
 # Start the training 
 
