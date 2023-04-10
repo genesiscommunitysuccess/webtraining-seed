@@ -1,7 +1,10 @@
 import { foundationProgressRing } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationProgressRing);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationProgressRing
+);
 
 export const alphaProgressRing = () => foundationProgressRing();
 

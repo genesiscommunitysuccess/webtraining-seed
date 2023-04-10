@@ -1,7 +1,10 @@
 import { fastSliderLabel } from '@microsoft/fast-components';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(fastSliderLabel);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  fastSliderLabel
+);
 
 export const alphaSliderLabel = () => fastSliderLabel();
 

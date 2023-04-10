@@ -1,7 +1,10 @@
 import { foundationDataGridCell } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationDataGridCell);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationDataGridCell
+);
 
 export const alphaDataGridCell = () => foundationDataGridCell();
 

@@ -1,7 +1,10 @@
 import { foundationSegmentedControl } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationSegmentedControl);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationSegmentedControl
+);
 
 export const alphaSegmentedControl = () => foundationSegmentedControl();
 

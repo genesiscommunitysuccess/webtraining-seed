@@ -1,7 +1,10 @@
 import { foundationListboxOption } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationListboxOption);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationListboxOption
+);
 
 export const alphaListboxOption = () => foundationListboxOption();
 

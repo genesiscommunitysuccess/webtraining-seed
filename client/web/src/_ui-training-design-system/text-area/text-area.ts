@@ -1,7 +1,10 @@
 import { foundationTextArea } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationTextArea);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationTextArea
+);
 
 export const alphaTextArea = () => foundationTextArea();
 

@@ -1,7 +1,10 @@
 import { foundationNumberField } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationNumberField);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationNumberField
+);
 
 export const alphaNumberField = () => foundationNumberField();
 

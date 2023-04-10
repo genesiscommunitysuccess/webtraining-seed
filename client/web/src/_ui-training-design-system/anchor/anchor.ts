@@ -1,7 +1,10 @@
 import { foundationAnchor } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationAnchor);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationAnchor
+);
 
 export const alphaAnchor = () => foundationAnchor();
 

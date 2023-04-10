@@ -1,7 +1,10 @@
 import { foundationDisclosure } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationDisclosure);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationDisclosure
+);
 
 export const alphaDisclosure = () => foundationDisclosure();
 

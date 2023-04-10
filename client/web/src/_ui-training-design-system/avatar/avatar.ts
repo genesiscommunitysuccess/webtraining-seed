@@ -1,7 +1,10 @@
 import { fastAvatar } from '@microsoft/fast-components';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(fastAvatar);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  fastAvatar
+);
 
 export const alphaAvatar = () => fastAvatar();
 

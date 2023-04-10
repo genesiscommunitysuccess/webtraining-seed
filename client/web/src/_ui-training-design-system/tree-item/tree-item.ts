@@ -1,7 +1,10 @@
 import { foundationTreeItem } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationTreeItem);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationTreeItem
+);
 
 export const alphaTreeItem = () => foundationTreeItem();
 

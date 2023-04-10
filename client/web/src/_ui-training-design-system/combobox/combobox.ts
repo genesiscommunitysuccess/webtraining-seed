@@ -1,7 +1,10 @@
 import { foundationCombobox } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationCombobox);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationCombobox
+);
 
 export const alphaCombobox = () => foundationCombobox();
 

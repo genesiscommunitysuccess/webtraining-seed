@@ -1,7 +1,10 @@
 import { foundationTreeView } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationTreeView);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationTreeView
+);
 
 export const alphaTreeView = () => foundationTreeView();
 

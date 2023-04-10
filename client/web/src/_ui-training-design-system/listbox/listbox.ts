@@ -1,7 +1,10 @@
 import { fastListbox } from '@microsoft/fast-components';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(fastListbox);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  fastListbox
+);
 
 export const alphaListbox = () => fastListbox();
 

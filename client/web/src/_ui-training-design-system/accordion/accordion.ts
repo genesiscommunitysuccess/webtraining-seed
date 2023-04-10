@@ -1,7 +1,10 @@
 import { fastAccordion } from '@microsoft/fast-components';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(fastAccordion);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  fastAccordion
+);
 
 export const alphaAccordion = () => fastAccordion();
 
