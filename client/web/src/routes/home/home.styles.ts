@@ -10,7 +10,6 @@ export const HomeStyles = css`
   }
 
   .split-layout {
-      display: flex;
       flex-direction: column;
       flex: 1;
       width: 100%;
@@ -18,8 +17,8 @@ export const HomeStyles = css`
   }
 
   .top-layout {
-  height: 90%;
-  flex-direction: row;
+    height: 45%;
+    flex-direction: row;
   }
 
   .positions-card {
