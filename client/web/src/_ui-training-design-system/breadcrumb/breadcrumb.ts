@@ -1,7 +1,10 @@
 import { foundationBreadcrumb } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationBreadcrumb);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationBreadcrumb
+);
 
 export const alphaBreadcrumb = () => foundationBreadcrumb();
 

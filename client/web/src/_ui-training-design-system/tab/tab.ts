@@ -1,7 +1,10 @@
 import { foundationTab } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationTab);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationTab
+);
 
 export const alphaTab = () => foundationTab();
 

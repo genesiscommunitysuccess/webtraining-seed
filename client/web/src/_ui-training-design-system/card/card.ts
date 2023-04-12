@@ -1,7 +1,10 @@
 import { foundationCard } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationCard);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationCard
+);
 
 export const alphaCard = () => foundationCard();
 

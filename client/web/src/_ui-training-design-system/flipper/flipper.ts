@@ -1,7 +1,10 @@
 import { foundationFlipper } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationFlipper);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationFlipper
+);
 
 export const alphaFlipper = () => foundationFlipper();
 

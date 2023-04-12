@@ -1,7 +1,10 @@
 import { foundationCheckbox } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationCheckbox);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationCheckbox
+);
 
 export const alphaCheckbox = () => foundationCheckbox();
 

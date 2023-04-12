@@ -1,7 +1,10 @@
 import { foundationTooltip } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationTooltip);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationTooltip
+);
 
 export const alphaTooltip = () => foundationTooltip();
 

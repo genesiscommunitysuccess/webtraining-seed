@@ -1,7 +1,10 @@
 import { foundationModal } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationModal);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationModal
+);
 
 export const alphaModal = () => foundationModal();
 

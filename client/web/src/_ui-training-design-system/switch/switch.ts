@@ -1,7 +1,10 @@
 import { foundationSwitch } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationSwitch);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationSwitch
+);
 
 export const alphaSwitch = () => foundationSwitch();
 

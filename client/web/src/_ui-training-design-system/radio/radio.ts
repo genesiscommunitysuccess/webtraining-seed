@@ -1,7 +1,10 @@
 import { foundationRadio } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationRadio);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationRadio
+);
 
 export const alphaRadio = () => foundationRadio();
 

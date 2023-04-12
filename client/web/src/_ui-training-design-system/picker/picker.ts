@@ -1,7 +1,10 @@
 import { fastPicker } from '@microsoft/fast-components';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(fastPicker);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  fastPicker
+);
 
 export const alphaPicker = () => fastPicker();
 

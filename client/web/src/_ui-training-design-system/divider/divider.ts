@@ -1,7 +1,10 @@
 import { foundationDivider } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationDivider);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationDivider
+);
 
 export const alphaDivider = () => foundationDivider();
 

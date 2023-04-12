@@ -1,7 +1,10 @@
 import { foundationDatePicker } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationDatePicker);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationDatePicker
+);
 
 export const alphaDatePicker = () => foundationDatePicker();
 

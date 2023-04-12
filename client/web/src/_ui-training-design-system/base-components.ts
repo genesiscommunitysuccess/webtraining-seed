@@ -1,4 +1,8 @@
+import type { Container } from '@microsoft/fast-foundation';
+
+// eslint-disable-next-line import/order
 import { designSystemProvider } from './design-system-provider';
+
 import { alphaAccordion } from './accordion';
 import { alphaAccordionItem } from './accordion-item';
 import { alphaActionsMenu } from './actions-menu';
@@ -6,6 +10,7 @@ import { alphaAnchor } from './anchor';
 import { alphaAnchoredRegion } from './anchored-region';
 import { alphaAvatar } from './avatar';
 import { alphaBadge } from './badge';
+import { alphaBanner } from './banner';
 import { alphaBreadcrumb } from './breadcrumb';
 import { alphaBreadcrumbItem } from './breadcrumb-item';
 import { alphaButton } from './button';
@@ -13,6 +18,7 @@ import { alphaCalendar } from './calendar';
 import { alphaCard } from './card';
 import { alphaCheckbox } from './checkbox';
 import { alphaCombobox } from './combobox';
+import { alphaConnectionIndicator } from './connection-indicator';
 import { alphaDataGrid } from './data-grid';
 import { alphaDataGridCell } from './data-grid-cell';
 import { alphaDataGridRow } from './data-grid-row';
@@ -20,12 +26,18 @@ import { alphaDatePicker } from './date-picker';
 import { alphaDialog } from './dialog';
 import { alphaDisclosure } from './disclosure';
 import { alphaDivider } from './divider';
+import { alphaDropdownMenu } from './dropdown-menu';
+import { alphaErrorBanner } from './error-banner';
 import { alphaErrorBoundary } from './error-boundary';
+import { alphaErrorDialog } from './error-dialog';
+import { alphaFileUpload } from './file-upload';
 import { alphaFilter } from './filter';
 import { alphaFilterBar } from './filter-bar';
+import { alphaFlexLayout } from './flex-layout';
 import { alphaFlipper } from './flipper';
 import { alphaFlyout } from './flyout';
-import { alphaForm } from './form';
+import { alphaGridLayout } from './grid-layout';
+import { alphaGridLayoutItem } from './grid-layout-item';
 import { alphaHorizontalScroll } from './horizontal-scroll';
 import { alphaIcon } from './icon';
 import { alphaListbox } from './listbox';
@@ -47,6 +59,7 @@ import { alphaSelect } from './select';
 import { alphaSkeleton } from './skeleton';
 import { alphaSlider } from './slider';
 import { alphaSliderLabel } from './slider-label';
+import { alphaSnackbar } from './snackbar';
 import { alphaSwitch } from './switch';
 import { alphaTab } from './tab';
 import { alphaTabPanel } from './tab-panel';
@@ -60,8 +73,6 @@ import { alphaTreeItem } from './tree-item';
 import { alphaTreeView } from './tree-view';
 import { alphaUrlInput } from './url-input';
 
-import type { Container } from '@microsoft/fast-foundation';
-
 export const baseComponents = {
   designSystemProvider,
   alphaAccordion,
@@ -71,6 +82,7 @@ export const baseComponents = {
   alphaAnchoredRegion,
   alphaAvatar,
   alphaBadge,
+  alphaBanner,
   alphaBreadcrumb,
   alphaBreadcrumbItem,
   alphaButton,
@@ -78,6 +90,7 @@ export const baseComponents = {
   alphaCard,
   alphaCheckbox,
   alphaCombobox,
+  alphaConnectionIndicator,
   alphaDataGrid,
   alphaDataGridCell,
   alphaDataGridRow,
@@ -85,12 +98,18 @@ export const baseComponents = {
   alphaDialog,
   alphaDisclosure,
   alphaDivider,
+  alphaDropdownMenu,
+  alphaErrorBanner,
   alphaErrorBoundary,
+  alphaErrorDialog,
+  alphaFileUpload,
   alphaFilter,
   alphaFilterBar,
+  alphaFlexLayout,
   alphaFlipper,
   alphaFlyout,
-  alphaForm,
+  alphaGridLayout,
+  alphaGridLayoutItem,
   alphaHorizontalScroll,
   alphaIcon,
   alphaListbox,
@@ -112,6 +131,7 @@ export const baseComponents = {
   alphaSkeleton,
   alphaSlider,
   alphaSliderLabel,
+  alphaSnackbar,
   alphaSwitch,
   alphaTab,
   alphaTabPanel,

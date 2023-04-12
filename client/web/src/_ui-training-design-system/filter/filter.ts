@@ -1,7 +1,10 @@
 import { foundationFilter } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationFilter);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationFilter
+);
 
 export const alphaFilter = () => foundationFilter();
 

@@ -1,7 +1,10 @@
 import { fastSearch } from '@microsoft/fast-components';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(fastSearch);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  fastSearch
+);
 
 export const alphaSearch = () => fastSearch();
 

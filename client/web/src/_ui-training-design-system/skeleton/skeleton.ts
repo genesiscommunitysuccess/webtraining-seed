@@ -1,7 +1,10 @@
 import { foundationSkeleton } from '@genesislcap/foundation-ui';
 import { getExports } from '../utils';
 
-const { defaultConfig, shadowOptions, styles, template } = getExports(foundationSkeleton);
+// eslint-disable-next-line prettier/prettier
+const { defaultConfig, shadowOptions, styles, template } = getExports(
+  foundationSkeleton
+);
 
 export const alphaSkeleton = () => foundationSkeleton();
 
