@@ -33,7 +33,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
   ];
 
   public configure() {
-    this.title = 'Blank App Demo';
+    this.title = 'WebDeveloper Training';
     this.defaultLayout = defaultLayout;
 
     const authPath = 'login';
