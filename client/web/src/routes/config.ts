@@ -5,37 +5,39 @@ import {
   FoundationAnalyticsEventType,
   Session,
 } from '@genesislcap/foundation-comms';
-import {
-  defaultLoginConfig,
-  LoginConfig,
-  Settings as LoginSettings,
-} from '@genesislcap/foundation-login';
-import { Constructable } from '@microsoft/fast-element';
-import { Container, optional } from '@microsoft/fast-foundation';
-import { Route, RouterConfiguration } from '@microsoft/fast-router';
-import { defaultLayout, loginLayout } from '../layouts';
-import { Home } from './home/home';
-import { NotFound } from './not-found/not-found';
+import {Settings as LoginSettings} from '@genesislcap/foundation-login';
+import {Constructable} from '@microsoft/fast-element';
+import {Container} from '@microsoft/fast-foundation';
+import {Route, RouterConfiguration} from '@microsoft/fast-router';
+import {defaultLayout, loginLayout} from '../layouts';
+import {Home} from './home/home';
+import {NotFound} from './not-found/not-found';
+import {Reporting} from '@genesislcap/foundation-reporting';
 
-export class MainRouterConfig extends RouterConfiguration<LoginSettings> {
+type RouterSettings = {
+  autoAuth?: boolean;
+} & LoginSettings;
+
+export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
   constructor(
     @Auth private auth: Auth,
     @Container private container: Container,
     @FoundationAnalytics private analytics: FoundationAnalytics,
-    @Session private session: Session,
-    @optional(LoginConfig)
-    private loginConfig: LoginConfig = { ...defaultLoginConfig, autoAuth: true, autoConnect: true }
+    @Session private session: Session
   ) {
     super();
   }
 
-  public allRoutes = [{ index: 1, path: 'home', title: 'Home', icon: 'home', variant: 'solid' }];
+  public allRoutes = [
+    {index: 1, path: 'home', title: 'Home', icon: 'home', variant: 'solid'},
+  ];
 
   public configure() {
-    this.title = 'WebDeveloper Training';
+    this.title = 'Blank App Demo';
     this.defaultLayout = defaultLayout;
 
     const authPath = 'login';
+    const commonSettings: RouterSettings = { autoAuth: true };
 
     this.routes.map(
       { path: '', redirect: authPath },
@@ -63,8 +65,8 @@ export class MainRouterConfig extends RouterConfiguration<LoginSettings> {
         settings: { public: true },
         childRouters: true,
       },
-      { path: 'home', element: Home, title: 'Home', name: 'home' },
-      { path: 'not-found', element: NotFound, title: 'Not Found', name: 'not-found' }
+      {path: 'home', element: Home, title: 'Home', name: 'home', settings: commonSettings},
+      {path: 'not-found', element: NotFound, title: 'Not Found', name: 'not-found'},
     );
 
     const auth = this.auth;
@@ -75,7 +77,6 @@ export class MainRouterConfig extends RouterConfiguration<LoginSettings> {
     this.routes.fallback(() =>
       this.auth.isLoggedIn ? { redirect: 'not-found' } : { redirect: authPath }
     );
-
     /**
      * Example of a NavigationContributor
      */
@@ -106,7 +107,7 @@ export class MainRouterConfig extends RouterConfiguration<LoginSettings> {
         /**
          * If allowAutoAuth and session is valid try to connect+auto-login
          */
-        if (this.loginConfig.autoAuth && (await auth.reAuthFromSession())) {
+        if (settings && settings.autoAuth && await auth.reAuthFromSession()) {
           return;
         }
 
@@ -115,7 +116,7 @@ export class MainRouterConfig extends RouterConfiguration<LoginSettings> {
          */
         phase.cancel(() => {
           this.session.captureReturnUrl();
-          Route.name.replace(phase.router, authPath);
+          Route.name.replace(phase.router, 'login');
         });
       },
     });
