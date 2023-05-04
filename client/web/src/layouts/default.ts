@@ -32,7 +32,8 @@ export const loginLayout = new FASTElementLayout(
 export const defaultLayout = new FASTElementLayout(
   html`
     <div class="container">
-      <foundation-header 
+      <foundation-header
+        logo-src="https://icotar.com/avatar/webtraining"
         show-luminance-toggle-button
         show-misc-toggle-button
         show-notification-button>
