@@ -34,7 +34,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
 
   public allRoutes = [
     {index: 1, path: 'home', title: 'Home', icon: 'home', variant: 'solid'},
-    { index: 2, path: 'playground', title: 'Playground', icon: 'home', variant: 'solid' },
+    { index: 2, path: 'playground', title: 'Playground', icon: 'gear', variant: 'solid' },
     { index: 3, path: 'order', title: 'Order', icon: 'money-bill', variant: 'solid' },
     { index: 4, path: 'report', title: 'Report', icon: 'chart-simple', variant: 'solid' },
 

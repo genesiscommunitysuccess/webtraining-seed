@@ -55,7 +55,7 @@ export const defaultLayout = new FASTElementLayout(
             <p>Training Menu</p>
             <zero-tree-view>
               <zero-tree-item @click=${(x) => x.navigation.navigateTo("/playground")}>
-                <zero-icon variant="solid" name="location-arrow"></zero-icon>
+                <zero-icon variant="solid" name="gear"></zero-icon>
                 Playground
               </zero-tree-item>
               <zero-tree-item @click=${(x) => x.navigation.navigateTo("/home")}>
