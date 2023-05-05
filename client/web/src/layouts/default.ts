@@ -55,7 +55,9 @@ export const defaultLayout = new FASTElementLayout(
             <p>GROUP SLOT</p>
             <zero-tree-view>
               <zero-tree-item @click=${(x) => x.navigation.navigateTo("/playground")}>
-                <zero-icon variant="solid" name="location-arrow"></zero-icon> </zero-tree-item>
+                <zero-icon variant="solid" name="location-arrow"></zero-icon>
+                Playground
+              </zero-tree-item>
               <zero-tree-item>
                 <zero-icon variant="solid" name="location-arrow"></zero-icon>
                 Slot Tree Item
