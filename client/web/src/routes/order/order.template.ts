@@ -1,11 +1,14 @@
 import {html, repeat, when} from '@microsoft/fast-element';
 import type {Order} from './order';
 import { sync } from '@genesislcap/foundation-utils';
+import {OrderStyles} from './order.styles';
+import {orderColumnDefs} from './orderColumnDefs';
+import {positionGridStyles} from "./positionsGrid.styles";
 
 export const OrderTemplate = html<Order>`
 <div class="row-split-layout">
-    <div class="column-split-layout">
-        <span>Instrument</span>
+    <div class="column-split-layout left">
+        <span class='${x => x.instrumentClass}'>Instrument</span>
         <zero-select :value=${sync(x=> x.instrument)} @change=${x => x.getMarketData()}>
           <zero-option :selected=${sync(x => x.instrument==undefined)}>-- Select --</zero-option>
           ${repeat(x => x.allInstruments, html`
@@ -13,8 +16,8 @@ export const OrderTemplate = html<Order>`
           `)}
         </zero-select>
         <span>Last price: ${x => x.lastPrice}</span>
-        <zero-text-field :value=${sync(x=> x.quantity)}>Quantity</zero-text-field>
-        <zero-text-field :value=${sync(x=> x.price)}>Price</zero-text-field>
+        <zero-text-field required :value=${sync(x=> x.quantity)} :class='${x => x.quantityClass}'>Quantity</zero-text-field>
+        <zero-text-field :value=${sync(x=> x.price)} class='${x => x.priceClass}'>Price</zero-text-field>
         <span>Total: ${x => x.quantity * x.price}</span>
         <span>Direction</span>
         <zero-select :value=${sync(x=> x.direction)}>
@@ -23,6 +26,26 @@ export const OrderTemplate = html<Order>`
           `)}
         </zero-select>
         <zero-text-area :value=${sync(x=> x.notes)}>Notes</zero-text-area>
+        <zero-button @click=${x=> x.insertOrder()}>Add Order</zero-button>
+        ${when(x => x.serverResponse, html`
+        <zero-card>
+          <span>${x=> x.serverResponse.MESSAGE_TYPE == 'EVENT_ACK' ?
+            'Successfully added trade' : 'Something went wrong'}
+          </span>
+        </zero-card>
+            `)}
+    </div>
+    <div class="column-split-layout">
+        <zero-grid-pro>
+        <slotted-styles :styles=${() => positionGridStyles}></slotted-styles>
+            <grid-pro-genesis-datasource
+                resource-name="ALL_ORDERS"
+                order-by="ORDER_ID">
+            </grid-pro-genesis-datasource>
+            ${repeat(() => orderColumnDefs, html`
+              <grid-pro-column :definition="${x => x}" />
+            `)}
+        </zero-grid-pro>
     </div>
 </div>
 `

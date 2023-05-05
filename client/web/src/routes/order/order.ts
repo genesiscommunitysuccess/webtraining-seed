@@ -22,21 +22,52 @@ export class Order extends FASTElement {
     @observable public notes: string;
     @observable public allInstruments: Array<{value: string, label: string}>; //add this property
     @observable public directionOptions: Array<{value: string, label: string}>; //add this property
+    @observable public serverResponse;
+    @observable public instrumentClass: string;
+    @observable public quantityClass: string;
+    @observable public priceClass: string;
+
+     public async insertOrder() {
+        this.instrumentClass = "";
+        this.quantityClass = "";
+        this.priceClass = "";
+
+        this.serverResponse = await this.connect.commitEvent('EVENT_ORDER_INSERT', {
+          DETAILS: {
+            ORDER_ID: Date.now(),
+            INSTRUMENT_ID: this.instrument,
+            QUANTITY: this.quantity,
+            PRICE: this.price,
+            DIRECTION: this.direction,
+            NOTES: this.notes,
+          },
+        });
+        console.log("serverResponse: ", this.serverResponse);
+
+        if (this.serverResponse.MESSAGE_TYPE == 'EVENT_NACK') {
+          const error = this.serverResponse.ERROR[0];
+          alert(error.TEXT);
+          switch (error.FIELD) {
+            case "INSTRUMENT_ID":
+              this.instrumentClass = 'required-yes';
+              break;
+
+            case "QUANTITY":
+              this.quantityClass = 'required-yes';
+              break;
+
+            case "PRICE":
+              this.priceClass = 'required-yes';
+              break;
+
+            default:
+              console.log("FIELD not found: ", error.FIELD);
+          }
+
+        }
+      }
 
 
-    public async insertOrder(event) {
-      const formData = event.detail.payload;
-      const insertOrderEvent = await this.connect.commitEvent('EVENT_ORDER_INSERT', {
-        DETAILS: {
-          INSTRUMENT_ID: formData.INSTRUMENT_ID,
-          QUANTITY: formData.QUANTITY,
-          PRICE: formData.PRICE,
-          DIRECTION: formData.DIRECTION,
-          NOTES: formData.NOTES,
-        },
-      });
-      logger.debug('EVENT_ORDER_INSERT result -> ', insertOrderEvent);
-    }
     public async getMarketData() {
       const msg = await this.connect.request('INSTRUMENT_MARKET_DATA', {
         REQUEST: {

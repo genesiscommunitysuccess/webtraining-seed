@@ -24,6 +24,10 @@ export const OrderStyles = css`
     height: 50%;
   }
 
+  .required-yes {
+    color: red;
+  }
+
   zero-select, zero-text-field, zero-text-area{
       display: block;
   }
