@@ -14,6 +14,8 @@ import {Home} from './home/home';
 import {NotFound} from './not-found/not-found';
 import {Reporting} from '@genesislcap/foundation-reporting';
 import { MarketdataComponent } from './playground/playground';
+import { Order } from './order/order'
+import { Report } from './report/report'
 
 
 type RouterSettings = {
@@ -33,6 +35,9 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
   public allRoutes = [
     {index: 1, path: 'home', title: 'Home', icon: 'home', variant: 'solid'},
     { index: 2, path: 'playground', title: 'Playground', icon: 'home', variant: 'solid' },
+    { index: 3, path: 'order', title: 'Order', icon: 'money-bill', variant: 'solid' },
+    { index: 4, path: 'report', title: 'Report', icon: 'chart-simple', variant: 'solid' },
+
   ];
 
   public configure() {
@@ -71,6 +76,9 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
       {path: 'home', element: Home, title: 'Home', name: 'home', settings: commonSettings},
       {path: 'not-found', element: NotFound, title: 'Not Found', name: 'not-found'},
       {path: 'playground', element: MarketdataComponent, title: 'Playground', name: 'playground', settings: commonSettings},
+      {path: 'order', element: Order, title: 'Order', name: 'order', settings: commonSettings},
+      {path: 'report', element: Report, title: 'Report', name: 'report', settings: commonSettings},
+
     );
 
     const auth = this.auth;

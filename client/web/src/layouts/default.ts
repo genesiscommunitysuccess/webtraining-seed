@@ -52,26 +52,23 @@ export const defaultLayout = new FASTElementLayout(
           `
         )}
         <div slot="menu-contents">
-            <p>GROUP SLOT</p>
+            <p>Training Menu</p>
             <zero-tree-view>
               <zero-tree-item @click=${(x) => x.navigation.navigateTo("/playground")}>
                 <zero-icon variant="solid" name="location-arrow"></zero-icon>
                 Playground
               </zero-tree-item>
-              <zero-tree-item>
-                <zero-icon variant="solid" name="location-arrow"></zero-icon>
-                Slot Tree Item
+              <zero-tree-item @click=${(x) => x.navigation.navigateTo("/home")}>
+                <zero-icon variant="solid" name="home"></zero-icon>
+                Trades & Positions
               </zero-tree-item>
-            </zero-tree-view>
-            <p>GROUP SLOT 2</p>
-            <zero-tree-view>
-              <zero-tree-item>
-                <zero-icon variant="solid" name="location-arrow"></zero-icon>
-                Slot Tree Item 2
+              <zero-tree-item @click=${(x) => x.navigation.navigateTo("/home")}>
+                <zero-icon variant="solid" name="money-bill"></zero-icon>
+                Orders
               </zero-tree-item>
-              <zero-tree-item>
-                <zero-icon variant="solid" name="location-arrow"></zero-icon>
-                Slot Tree Item 2
+              <zero-tree-item @click=${(x) => x.navigation.navigateTo("/home")}>
+                <zero-icon variant="solid" name="chart-simple"></zero-icon>
+                Report
               </zero-tree-item>
             </zero-tree-view>
         </div>
