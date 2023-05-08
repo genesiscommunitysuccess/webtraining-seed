@@ -17,6 +17,7 @@ export const OrderTemplate = html<Order>`
             <grid-pro-column :definition="${x => x}" />
             `)}
             <grid-pro-column :definition="${x => x.singleOrderActionColDef}" />
+            <grid-pro-column :definition="${x => x.cancelOrderActionColDef}" />
         </zero-grid-pro>
     </div>
     <div class="row-split-layout">
