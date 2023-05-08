@@ -12,12 +12,12 @@ export const OrderStyles = css`
     text-align: center;
     flex-direction: column;
     flex: 1;
-    width: 50%;
+    width: 100%;
   }
 
   .row-split-layout {
     justify-content: center;
-    display: flex;
+    display: block;
     flex-direction: row;
     flex: 1;
     width: 100%;

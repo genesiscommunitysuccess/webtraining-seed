@@ -5,8 +5,16 @@ import {OrderStyles} from './order.styles';
 import {positionGridStyles} from "./positionsGrid.styles";
 
 export const OrderTemplate = html<Order>`
-<div class="row-split-layout">
-    <div class="column-split-layout left">
+<div class="column-split-layout">
+    <div class="row-split-layout">
+      <zero-grid-pro>
+          <grid-pro-genesis-datasource
+              resource-name="ALL_ORDERS"
+              order-by="ORDER_ID">
+          </grid-pro-genesis-datasource>
+      </zero-grid-pro>
+    </div>
+    <div class="row-split-layout left">
         <span>Order ID: ${x => x.Order_ID}</span>
         <span class='${x => x.instrumentClass}'>Instrument</span>
         <zero-select :value=${sync(x=> x.instrument)} @change=${x => x.getMarketData()}>
@@ -32,14 +40,6 @@ export const OrderTemplate = html<Order>`
         'Successfully added trade' : 'Something went wrong'}
         </span>
             `)}
-    </div>
-    <div class="column-split-layout">
-      <zero-grid-pro>
-          <grid-pro-genesis-datasource
-              resource-name="ALL_ORDERS"
-              order-by="ORDER_ID">
-          </grid-pro-genesis-datasource>
-      </zero-grid-pro>
     </div>
 </div>
 `
