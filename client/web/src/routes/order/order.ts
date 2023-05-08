@@ -26,6 +26,7 @@ export class Order extends FASTElement {
     @observable public instrumentClass: string;
     @observable public quantityClass: string;
     @observable public priceClass: string;
+    @observable public Order_ID = Date.now();
 
      public async insertOrder() {
         this.instrumentClass = "";
@@ -34,7 +35,7 @@ export class Order extends FASTElement {
 
         this.serverResponse = await this.connect.commitEvent('EVENT_ORDER_INSERT', {
           DETAILS: {
-            ORDER_ID: Date.now(),
+            ORDER_ID: this.Order_ID,
             INSTRUMENT_ID: this.instrument,
             QUANTITY: this.quantity,
             PRICE: this.price,

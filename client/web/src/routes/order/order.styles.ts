@@ -28,7 +28,7 @@ export const OrderStyles = css`
     color: red;
   }
 
-  zero-select, zero-text-field, zero-text-area{
+  zero-select, zero-text-field, zero-text-area, span{
       display: block;
   }
 `

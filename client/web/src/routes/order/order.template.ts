@@ -7,6 +7,7 @@ import {positionGridStyles} from "./positionsGrid.styles";
 export const OrderTemplate = html<Order>`
 <div class="row-split-layout">
     <div class="column-split-layout left">
+        <span>Order ID: ${x => x.Order_ID}</span>
         <span class='${x => x.instrumentClass}'>Instrument</span>
         <zero-select :value=${sync(x=> x.instrument)} @change=${x => x.getMarketData()}>
           <zero-option :selected=${sync(x => x.instrument==undefined)}>-- Select --</zero-option>
@@ -27,16 +28,13 @@ export const OrderTemplate = html<Order>`
         <zero-text-area :value=${sync(x=> x.notes)}>Notes</zero-text-area>
         <zero-button @click=${x=> x.insertOrder()}>Add Order</zero-button>
         ${when(x => x.serverResponse, html`
-        <zero-card>
-          <span>${x=> x.serverResponse.MESSAGE_TYPE == 'EVENT_ACK' ?
-            'Successfully added trade' : 'Something went wrong'}
-          </span>
-        </zero-card>
+        <span>${x=> x.serverResponse.MESSAGE_TYPE == 'EVENT_ACK' ?
+        'Successfully added trade' : 'Something went wrong'}
+        </span>
             `)}
     </div>
     <div class="column-split-layout">
-        <zero-grid-pro>
-        <slotted-styles :styles=${() => positionGridStyles}></slotted-styles>
+      <zero-grid-pro>
           <grid-pro-genesis-datasource
               resource-name="ALL_ORDERS"
               order-by="ORDER_ID">
