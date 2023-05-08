@@ -2,7 +2,6 @@ import {html, repeat, when} from '@microsoft/fast-element';
 import type {Order} from './order';
 import { sync } from '@genesislcap/foundation-utils';
 import {OrderStyles} from './order.styles';
-import {orderColumnDefs} from './orderColumnDefs';
 import {positionGridStyles} from "./positionsGrid.styles";
 
 export const OrderTemplate = html<Order>`
@@ -38,14 +37,11 @@ export const OrderTemplate = html<Order>`
     <div class="column-split-layout">
         <zero-grid-pro>
         <slotted-styles :styles=${() => positionGridStyles}></slotted-styles>
-            <grid-pro-genesis-datasource
-                resource-name="ALL_ORDERS"
-                order-by="ORDER_ID">
-            </grid-pro-genesis-datasource>
-            ${repeat(() => orderColumnDefs, html`
-              <grid-pro-column :definition="${x => x}" />
-            `)}
-        </zero-grid-pro>
+          <grid-pro-genesis-datasource
+              resource-name="ALL_ORDERS"
+              order-by="ORDER_ID">
+          </grid-pro-genesis-datasource>
+      </zero-grid-pro>
     </div>
 </div>
 `
