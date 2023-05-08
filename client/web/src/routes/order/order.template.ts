@@ -3,6 +3,7 @@ import type {Order} from './order';
 import { sync } from '@genesislcap/foundation-utils';
 import {OrderStyles} from './order.styles';
 import {positionGridStyles} from "./positionsGrid.styles";
+import {orderColumnDefs} from './orderColumnDefs';
 
 export const OrderTemplate = html<Order>`
 <div class="row-split-layout">
@@ -34,12 +35,16 @@ export const OrderTemplate = html<Order>`
             `)}
     </div>
     <div class="column-split-layout">
-      <zero-grid-pro>
-          <grid-pro-genesis-datasource
+        <zero-grid-pro only-template-col-defs persist-column-state-key='order-grid-settings' rowHeight = 20>
+            <grid-pro-genesis-datasource
               resource-name="ALL_ORDERS"
               order-by="ORDER_ID">
-          </grid-pro-genesis-datasource>
-      </zero-grid-pro>
+            </grid-pro-genesis-datasource>
+            ${repeat(() => orderColumnDefs, html`
+            <grid-pro-column :definition="${x => x}" />
+            `)}
+            <grid-pro-column :definition="${x => x.singleOrderActionColDef}" />
+        </zero-grid-pro>
     </div>
 </div>
 `

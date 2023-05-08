@@ -28,45 +28,60 @@ export class Order extends FASTElement {
     @observable public priceClass: string;
     @observable public Order_ID = Date.now();
 
-     public async insertOrder() {
-        this.instrumentClass = "";
-        this.quantityClass = "";
-        this.priceClass = "";
+    public singleOrderActionColDef = {
+    headerName: 'Action',
+    minWidth: 150,
+    maxWidth: 150,
+    cellRenderer: 'action',
+    cellRendererParams: {
+      actionClick: async (rowData) => {
+        console.log(rowData);
+      },
+      actionName: 'Print Order',
+      appearance: 'primary-gradient',
+    },
+    pinned: 'right',
+    };
 
-        this.serverResponse = await this.connect.commitEvent('EVENT_ORDER_INSERT', {
-          DETAILS: {
-            ORDER_ID: this.Order_ID,
-            INSTRUMENT_ID: this.instrument,
-            QUANTITY: this.quantity,
-            PRICE: this.price,
-            DIRECTION: this.direction,
-            NOTES: this.notes,
-          },
-        });
-        console.log("serverResponse: ", this.serverResponse);
+    public async insertOrder() {
+    this.instrumentClass = "";
+    this.quantityClass = "";
+    this.priceClass = "";
 
-        if (this.serverResponse.MESSAGE_TYPE == 'EVENT_NACK') {
-          const error = this.serverResponse.ERROR[0];
-          alert(error.TEXT);
-          switch (error.FIELD) {
-            case "INSTRUMENT_ID":
-              this.instrumentClass = 'required-yes';
-              break;
+    this.serverResponse = await this.connect.commitEvent('EVENT_ORDER_INSERT', {
+      DETAILS: {
+        ORDER_ID: this.Order_ID,
+        INSTRUMENT_ID: this.instrument,
+        QUANTITY: this.quantity,
+        PRICE: this.price,
+        DIRECTION: this.direction,
+        NOTES: this.notes,
+      },
+    });
+    console.log("serverResponse: ", this.serverResponse);
 
-            case "QUANTITY":
-              this.quantityClass = 'required-yes';
-              break;
+    if (this.serverResponse.MESSAGE_TYPE == 'EVENT_NACK') {
+      const error = this.serverResponse.ERROR[0];
+      alert(error.TEXT);
+      switch (error.FIELD) {
+        case "INSTRUMENT_ID":
+          this.instrumentClass = 'required-yes';
+          break;
 
-            case "PRICE":
-              this.priceClass = 'required-yes';
-              break;
+        case "QUANTITY":
+          this.quantityClass = 'required-yes';
+          break;
 
-            default:
-              console.log("FIELD not found: ", error.FIELD);
-          }
+        case "PRICE":
+          this.priceClass = 'required-yes';
+          break;
 
-        }
+        default:
+          console.log("FIELD not found: ", error.FIELD);
       }
+
+    }
+    }
 
 
     public async getMarketData() {
