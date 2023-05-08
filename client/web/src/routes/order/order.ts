@@ -26,7 +26,7 @@ export class Order extends FASTElement {
     @observable public instrumentClass: string;
     @observable public quantityClass: string;
     @observable public priceClass: string;
-    @observable public Order_ID = Date.now();
+    @attr public Order_ID = Date.now();
     @attr public minimumQuantity: number;
     @attr public sideFilter = 'BUY';
 
@@ -87,6 +87,8 @@ export class Order extends FASTElement {
     }
 
     public async insertOrder() {
+
+    this.Order_ID = Date.now();
     this.instrumentClass = "";
     this.quantityClass = "";
     this.priceClass = "";

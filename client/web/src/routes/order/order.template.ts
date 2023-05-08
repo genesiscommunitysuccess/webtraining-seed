@@ -4,6 +4,7 @@ import { sync } from '@genesislcap/foundation-utils';
 import {OrderStyles} from './order.styles';
 import {positionGridStyles} from "./positionsGrid.styles";
 import {orderColumnDefs} from './orderColumnDefs';
+import {ordersGridStyles} from "./orders-grid.styles";
 
 export const OrderTemplate = html<Order>`
 <div class="column-split-layout">
@@ -12,6 +13,7 @@ export const OrderTemplate = html<Order>`
 <zero-text-field :value = ${sync( x => x.minimumQuantity )}>Minimum Quantity Displayed</zero-text-field>
     <div class="row-split-layout">
         <zero-grid-pro only-template-col-defs persist-column-state-key='order-grid-settings' rowHeight = 20>
+            <slotted-styles :styles=${() => ordersGridStyles}></slotted-styles>
             <grid-pro-genesis-datasource ${ref('ordersGrid')}
               resource-name="ALL_ORDERS"
               order-by="ORDER_ID"
@@ -25,7 +27,7 @@ export const OrderTemplate = html<Order>`
         </zero-grid-pro>
     </div>
     <div class="row-split-layout">
-        <span>Order ID: ${x => x.Order_ID}</span>
+        <span class= "order_ID">Order ID: ${x => x.Order_ID}</span>
         <span class='${x => x.instrumentClass}'>Instrument</span>
         <zero-select :value=${sync(x=> x.instrument)} @change=${x => x.getMarketData()}>
           <zero-option :selected=${sync(x => x.instrument==undefined)}>-- Select --</zero-option>

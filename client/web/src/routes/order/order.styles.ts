@@ -1,4 +1,4 @@
-import {css} from "@microsoft/fast-element";
+import {css, ElementStyles} from "@microsoft/fast-element";
 import { mixinScreen } from '../../styles';
 
 export const OrderStyles = css`
@@ -15,6 +15,9 @@ export const OrderStyles = css`
     width: 100%;
   }
 
+   .order_ID {
+
+   }
   .row-split-layout {
     justify-content: center;
     display: block;
