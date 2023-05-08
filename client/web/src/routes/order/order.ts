@@ -1,4 +1,4 @@
-import {customElement, FASTElement, observable } from '@microsoft/fast-element';
+import {customElement, FASTElement, observable, attr } from '@microsoft/fast-element';
 import {OrderTemplate as template} from './order.template';
 import {OrderStyles as styles} from './order.styles';
 import {Connect} from '@genesislcap/foundation-comms';
@@ -27,6 +27,8 @@ export class Order extends FASTElement {
     @observable public quantityClass: string;
     @observable public priceClass: string;
     @observable public Order_ID = Date.now();
+    @attr public minimumQuantity: number;
+    @attr public sideFilter = 'BUY';
 
     public singleOrderActionColDef = {
     headerName: 'Action',
@@ -74,6 +76,15 @@ export class Order extends FASTElement {
         },
         pinned: 'right',
       };
+    @observable ordersGrid: any;
+
+    public customFilter() {
+        this.ordersGrid.criteria = `DIRECTION == 'BUY' || DIRECTION == 'SELL'`;
+      }
+
+    public toggleSideFilter() {
+        this.sideFilter = this.sideFilter == 'BUY' ? 'SELL' : 'BUY';
+    }
 
     public async insertOrder() {
     this.instrumentClass = "";
@@ -128,7 +139,7 @@ export class Order extends FASTElement {
 
     public async connectedCallback() { //add this method to Order class
         super.connectedCallback(); //FASTElement implementation
-
+        this.minimumQuantity = 0;
         const msg = await this.connect.snapshot('ALL_INSTRUMENTS'); //get a snapshot of data from ALL_INSTRUMENTS data server
         console.log(msg); //add this to look into the data returned and understand its structure
         this.allInstruments = msg.ROW?.map(instrument => ({

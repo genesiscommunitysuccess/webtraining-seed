@@ -1,4 +1,4 @@
-import {html, repeat, when} from '@microsoft/fast-element';
+import {html, repeat, when, ref} from '@microsoft/fast-element';
 import type {Order} from './order';
 import { sync } from '@genesislcap/foundation-utils';
 import {OrderStyles} from './order.styles';
@@ -7,11 +7,15 @@ import {orderColumnDefs} from './orderColumnDefs';
 
 export const OrderTemplate = html<Order>`
 <div class="column-split-layout">
+<zero-button @click=${x=> x.toggleSideFilter()}>Toggle filter: ${x => x.sideFilter}</zero-button>
+<zero-button @click=${x=> x.customFilter()}>No filters</zero-button>
+<zero-text-field :value = ${sync( x => x.minimumQuantity )}>Minimum Quantity Displayed</zero-text-field>
     <div class="row-split-layout">
         <zero-grid-pro only-template-col-defs persist-column-state-key='order-grid-settings' rowHeight = 20>
-            <grid-pro-genesis-datasource
+            <grid-pro-genesis-datasource ${ref('ordersGrid')}
               resource-name="ALL_ORDERS"
-              order-by="ORDER_ID">
+              order-by="ORDER_ID"
+              criteria="QUANTITY >= ${x=>x.minimumQuantity} && DIRECTION == '${x=> x.sideFilter}'">
             </grid-pro-genesis-datasource>
             ${repeat(() => orderColumnDefs, html`
             <grid-pro-column :definition="${x => x}" />
