@@ -70,6 +70,10 @@ export const defaultLayout = new FASTElementLayout(
                 <zero-icon variant="solid" name="chart-simple"></zero-icon>
                 Report
               </zero-tree-item>
+              <zero-tree-item @click=${(x) => x.navigation.navigateTo("/custom-order")}>
+              <zero-icon variant="solid" name="paintbrush"></zero-icon>
+                Custom Order
+              </zero-tree-item>
             </zero-tree-view>
         </div>
       </foundation-header>

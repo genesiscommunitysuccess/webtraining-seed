@@ -16,6 +16,7 @@ import {Reporting} from '@genesislcap/foundation-reporting';
 import { MarketdataComponent } from './playground/playground';
 import { Order } from './order/order'
 import { Report } from './report/report'
+import { CustomOrderPage } from './custom-order/custom-order';
 
 
 type RouterSettings = {
@@ -37,6 +38,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
     { index: 2, path: 'playground', title: 'Playground', icon: 'gear', variant: 'solid' },
     { index: 3, path: 'order', title: 'Order', icon: 'money-bill', variant: 'solid' },
     { index: 4, path: 'report', title: 'Report', icon: 'chart-simple', variant: 'solid' },
+    {index: 6, path: 'custom-order', title: 'Custom Order Grid', icon: 'paintbrush', variant: 'solid'},
 
   ];
 
@@ -78,7 +80,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
       {path: 'playground', element: MarketdataComponent, title: 'Playground', name: 'playground', settings: commonSettings},
       {path: 'order', element: Order, title: 'Order', name: 'order', settings: commonSettings},
       {path: 'report', element: Report, title: 'Report', name: 'report', settings: commonSettings},
-
+      {path: 'custom-order', element: CustomOrderPage, title: 'Custom Order', name: 'custom-order', settings: commonSettings},
     );
 
     const auth = this.auth;
