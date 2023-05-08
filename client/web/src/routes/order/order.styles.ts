@@ -12,7 +12,7 @@ export const OrderStyles = css`
     text-align: center;
     flex-direction: column;
     flex: 1;
-    width: 50%;
+    width: 100%;
   }
 
   .row-split-layout {
@@ -24,7 +24,7 @@ export const OrderStyles = css`
     height: 50%;
   }
 
-  zero-select, zero-text-field, zero-text-area{
+  zero-select, zero-text-field, zero-text-area, span{
       display: block;
   }
 `
