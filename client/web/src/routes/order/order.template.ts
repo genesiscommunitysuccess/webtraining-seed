@@ -6,8 +6,20 @@ import {positionGridStyles} from "./positionsGrid.styles";
 import {orderColumnDefs} from './orderColumnDefs';
 
 export const OrderTemplate = html<Order>`
-<div class="row-split-layout">
-    <div class="column-split-layout left">
+<div class="column-split-layout">
+    <div class="row-split-layout">
+        <zero-grid-pro only-template-col-defs persist-column-state-key='order-grid-settings' rowHeight = 20>
+            <grid-pro-genesis-datasource
+              resource-name="ALL_ORDERS"
+              order-by="ORDER_ID">
+            </grid-pro-genesis-datasource>
+            ${repeat(() => orderColumnDefs, html`
+            <grid-pro-column :definition="${x => x}" />
+            `)}
+            <grid-pro-column :definition="${x => x.singleOrderActionColDef}" />
+        </zero-grid-pro>
+    </div>
+    <div class="row-split-layout">
         <span>Order ID: ${x => x.Order_ID}</span>
         <span class='${x => x.instrumentClass}'>Instrument</span>
         <zero-select :value=${sync(x=> x.instrument)} @change=${x => x.getMarketData()}>
@@ -33,18 +45,6 @@ export const OrderTemplate = html<Order>`
         'Successfully added trade' : 'Something went wrong'}
         </span>
             `)}
-    </div>
-    <div class="column-split-layout">
-        <zero-grid-pro only-template-col-defs persist-column-state-key='order-grid-settings' rowHeight = 20>
-            <grid-pro-genesis-datasource
-              resource-name="ALL_ORDERS"
-              order-by="ORDER_ID">
-            </grid-pro-genesis-datasource>
-            ${repeat(() => orderColumnDefs, html`
-            <grid-pro-column :definition="${x => x}" />
-            `)}
-            <grid-pro-column :definition="${x => x.singleOrderActionColDef}" />
-        </zero-grid-pro>
     </div>
 </div>
 `
