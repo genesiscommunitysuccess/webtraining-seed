@@ -1,16 +1,17 @@
-import { foundationButton } from '@genesislcap/foundation-ui';
-import { getExports } from '../utils';
+import {
+  Button as FoundationButton,
+  defaultButtonConfig,
+  foundationButtonShadowOptions,
+} from '@genesislcap/foundation-ui';
+import {alphaButtonTemplate as template} from './button.template';
+import {alphaButtonStyles as styles} from './button.styles';
 
-// eslint-disable-next-line prettier/prettier
-const { defaultConfig, shadowOptions, styles, template } = getExports(
-  foundationButton
-);
+export class Button extends FoundationButton {}
 
-export const alphaButton = () => foundationButton();
-
-export { Button } from '@genesislcap/foundation-ui';
-
-export const defaultButtonConfig = defaultConfig;
-export const alphaButtonTemplate = template;
-export const alphaButtonStyles = styles;
-export const alphaButtonShadowOptions = shadowOptions;
+export const alphaButton = Button.compose({
+  baseName: 'button',
+  template,
+  styles,
+  shadowOptions: foundationButtonShadowOptions,
+  ...defaultButtonConfig,
+});

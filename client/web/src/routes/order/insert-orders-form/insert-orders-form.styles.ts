@@ -17,7 +17,6 @@ export const insertOrdersFormStyles = css`
     margin-up: 5%;
     display: flex;
     flex-direction: column;
-    border-style: solid;
     vertical-align: center;
 
   }

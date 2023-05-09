@@ -13,7 +13,7 @@ import * as values from './_config/values';
  */
 export const provideDesignSystem = (
   element?: HTMLElement,
-  prefix = 'alpha'
+  prefix = 'ui-training'
 ): Pick<DesignSystem, 'register'> => {
   if (element) {
     provideTokens(tokens, values, element);

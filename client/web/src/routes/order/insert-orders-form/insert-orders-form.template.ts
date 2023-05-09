@@ -14,8 +14,14 @@ export const insertOrdersFormTemplate = html<InsertOrdersForm>`
           `)}
         </zero-select>
         <span>Last price: ${x => x.lastPrice}</span>
+        <!--
         <zero-text-field required :value=${sync(x=> x.quantity)} :class='${x => x.quantityClass}'>Quantity</zero-text-field>
         <zero-text-field :value=${sync(x=> x.price)} class='${x => x.priceClass}'>Price</zero-text-field>
+        -->
+        <ui-training-design-system-provider>
+          <ui-training-text-field required :value=${sync(x=> x.quantity)}><span class='${x => x.quantityClass}'>Quantity</span></ui-training-text-field>
+          <ui-training-text-field :value=${sync(x=> x.price)}><span class='${x => x.priceClass}'>Price</span></ui-training-text-field>
+        </ui-training-design-system-provider>
         <span>Total: ${x => x.quantity * x.price}</span>
         <span>Direction</span>
         <zero-select :value=${sync(x=> x.direction)}>
@@ -24,7 +30,12 @@ export const insertOrdersFormTemplate = html<InsertOrdersForm>`
           `)}
         </zero-select>
         <zero-text-area :value=${sync(x=> x.notes)}>Notes</zero-text-area>
+        <!--
         <zero-button @click=${x=> x.insertOrder()}>Add Order</zero-button>
+        -->
+        <ui-training-design-system-provider>
+              <ui-training-button appearance="training-green" @click=${x=> x.insertOrder()}>Add Order<//ui-training-button>
+        </ui-training-design-system-provider>
         ${when(x => x.serverResponse, html`
             <zero-banner id="js-banner">
               <div slot="content">

@@ -1,17 +1,16 @@
 import {html, repeat, when, ref} from '@microsoft/fast-element';
 import type {Order} from './order';
-import { sync } from '@genesislcap/foundation-utils';
 import { OrderStyles} from './order.styles';
-import { positionGridStyles} from "./positionsGrid.styles";
-import { orderColumnDefs} from './orderColumnDefs';
-import { ordersGridStyles} from "./orders-grid.styles";
 import { InsertOrdersForm } from './insert-orders-form/insert-orders-form';
 import { OrdersGrid } from './orders-grid/orders-grid';
 import { InstrumentsGrid } from './instruments-grid/instruments-grid';
+import { OrdersChart } from './orders-chart/orders-chart';
 
 InsertOrdersForm;
 OrdersGrid;
 InstrumentsGrid;
+OrdersChart;
+
 
 export const OrderTemplate = html<Order>`
   <zero-layout>
@@ -26,7 +25,10 @@ export const OrderTemplate = html<Order>`
       </zero-layout-region>
       <zero-layout-region type="vertical">
         <zero-layout-item title="Orders Form">
-            <insert-orders-form></insert-orders-form>>
+            <insert-orders-form></insert-orders-form>
+        </zero-layout-item>
+        <zero-layout-item title="Orders Chart">
+            <orders-chart></orders-chart>
         </zero-layout-item>
       </zero-layout-region>
     </zero-layout-region>
