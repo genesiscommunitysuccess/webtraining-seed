@@ -81,7 +81,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
       {path: 'not-found', element: NotFound, title: 'Not Found', name: 'not-found'},
       {path: 'playground', element: MarketdataComponent, title: 'Playground', name: 'playground', settings: commonSettings},
       {path: 'order', element: Order, title: 'Order', name: 'order', settings: commonSettings},
-      {path: 'report', element: Report, title: 'Report', name: 'report', settings: commonSettings},
+      {path: 'report', element: Reporting, title: 'Report', name: 'report'},
       {path: 'custom-order', element: CustomOrderPage, title: 'Custom Order', name: 'custom-order', settings: commonSettings},
       {path: 'user', element: UserComponent, title: 'User', name: 'user', settings: commonSettings},
 );
