@@ -11,7 +11,6 @@ OrdersGrid;
 InstrumentsGrid;
 OrdersChart;
 
-
 export const OrderTemplate = html<Order>`
   <zero-layout>
     <zero-layout-region type="horizontal">
