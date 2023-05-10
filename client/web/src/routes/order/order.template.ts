@@ -12,7 +12,7 @@ InstrumentsGrid;
 OrdersChart;
 
 export const OrderTemplate = html<Order>`
-  <zero-layout>
+  <zero-layout auto-save-key="tutorial-app-layout-key" ${ref('layout')}>
     <zero-layout-region type="horizontal">
       <zero-layout-region type="vertical">
         <zero-layout-item title="Orders Grid">
