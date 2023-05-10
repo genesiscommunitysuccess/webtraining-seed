@@ -3,6 +3,8 @@ import {OrderTemplate as template} from './order.template';
 import {OrderStyles as styles} from './order.styles';
 import {Connect} from '@genesislcap/foundation-comms';
 import {logger} from '../../utils';
+import { FoundationLayout } from '@genesislcap/foundation-layout';
+import { ORDERS_DEFAULT_LAYOUT } from './predefined-layouts';
 
 const name = 'order-route';
 
@@ -29,6 +31,8 @@ export class Order extends FASTElement {
     @attr public Order_ID = Date.now();
     @attr public minimumQuantity: number;
     @attr public sideFilter = 'BUY';
+
+    layout: FoundationLayout;
 
     public singleOrderActionColDef = {
     headerName: 'Action',
@@ -139,8 +143,13 @@ export class Order extends FASTElement {
       this.lastPrice = msg.REPLY[0].LAST_PRICE;
     }
 
+        resetLayout() {
+            this.layout.loadLayout(JSON.parse(ORDERS_DEFAULT_LAYOUT));
+        }
+
     public async connectedCallback() { //add this method to Order class
         super.connectedCallback(); //FASTElement implementation
+        this.resetLayout = this.resetLayout.bind(this);
         this.minimumQuantity = 0;
         const msg = await this.connect.snapshot('ALL_INSTRUMENTS'); //get a snapshot of data from ALL_INSTRUMENTS data server
         console.log(msg); //add this to look into the data returned and understand its structure
