@@ -2,37 +2,17 @@
 
 Initial project for Genesis Application to support [web developer training](https://docs.genesis.global/secure/getting-started/web-training/training-intro/). If you want to see the complete application built during the training use this [repo](https://github.com/genesiscommunitysuccess/webtraining-alpha) as a reference.
 
-# Building and Running
+# Building, Running, and Starting
 From the command line, cd into the root directory of the project and then follow these steps.
 
 ## Build
-```shell
-./gradlew assemble
-```
+In order to build this project see the [Build process](https://learn.genesis.global/docs/getting-started/developer-training/training-content-day1/#build).
 
-## Run
-* Make sure Docker is running on your machine and run:
-```shell
-docker-compose build
-docker-compose up -d
-```
+## Deploy
+In order to deploy this project see the [Deploy process](https://learn.genesis.global/docs/getting-started/developer-training/training-content-day1/#deploy).
 
-* Attach a terminal to the `gsf` Docker container:
-```shell
-docker exec -it gsf bash
-```
-> Alternatively, you can use Docker Desktop Integrated Terminal for the containers you have just created (as explained [here](https://www.docker.com/blog/integrated-terminal-for-running-containers-extended-integration-with-containerd-and-more-in-docker-desktop-4-12/))
-
-* Now try logging in as alpha 
-```shell
-su - alpha
-```
-
-* Check if all services are running:
-```shell
-mon
-```
-> Feel free to keep running `mon` until all services are RUNNING.
+## Start
+Follow the [starting the server steps](https://learn.genesis.global/docs/getting-started/developer-training/training-content-day1/#starting-the-server).
 
 # Start the training 
 
