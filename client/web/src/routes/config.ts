@@ -17,6 +17,7 @@ import { MarketdataComponent } from './playground/playground';
 import { Order } from './order/order'
 import { Report } from './report/report'
 import { CustomOrderPage } from './custom-order/custom-order';
+import {UserComponent} from './user/user';
 
 
 type RouterSettings = {
@@ -39,6 +40,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
     { index: 3, path: 'order', title: 'Order', icon: 'money-bill', variant: 'solid' },
     { index: 4, path: 'report', title: 'Report', icon: 'chart-simple', variant: 'solid' },
     {index: 5, path: 'custom-order', title: 'Custom Order Grid', icon: 'paintbrush', variant: 'solid'},
+    {index: 6, path: 'user', title: 'User', icon: 'home', variant: 'solid'},
 
   ];
 
@@ -81,6 +83,8 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
       {path: 'order', element: Order, title: 'Order', name: 'order', settings: commonSettings},
       {path: 'report', element: Report, title: 'Report', name: 'report', settings: commonSettings},
       {path: 'custom-order', element: CustomOrderPage, title: 'Custom Order', name: 'custom-order', settings: commonSettings},
+      {path: 'user', element: UserComponent, title: 'User', name: 'user', settings: commonSettings},
+
 );
 
     const auth = this.auth;
