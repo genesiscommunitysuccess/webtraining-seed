@@ -1,8 +1,9 @@
 import {customElement, FASTElement, observable} from '@microsoft/fast-element';
 import {myTemplate as template} from './playground.template';
 import {playgroundStyles as styles} from './playground.styles';
-import { Modal as ZeroModal } from '@genesislcap/foundation-zero'
+import { Modal as ZeroModal, Banner as zeroBanner} from '@genesislcap/foundation-zero'
 import { DropdownMenu } from '@genesislcap/foundation-zero';
+import { Connect } from '@genesislcap/foundation-comms';
 
 const name = 'playground-route'
 
@@ -11,7 +12,7 @@ const name = 'playground-route'
     template,
     styles
 })
-
+/*
 const showcaseDropdown = [
       {
         name: 'Menu item 1',
@@ -71,20 +72,40 @@ const showcaseDropdown = [
         isDisabled: () => true,
       },
     ];
-
+*/
 export class Playground extends FASTElement {
-
+    @Connect connect: Connect;
     @observable public select_value: string;
     @observable public slider_value: number;
-    localdropdown: DropdownMenu
-    localdropdown.items = showcaseDropdown;
+    @observable public counterparty;
     environmentModal: ZeroModal;
-    test(){
+    localBanner: zeroBanner;
+
+    public async connectedCallback() { //add this method to Order class
+       super.connectedCallback();
+       alert("hii");
+    }
+
+    closeBanner(){
+        this.localBanner.dismiss()
+    }
+
+    public async loadData(){
+        const msg = await this.connect.snapshot('ALL_COUNTERPARTIES');
+        console.log(msg.ROW)
+
+        this.counterparty = msg.ROW?.map(counterparty => ({
+                  value: counterparty.COUNTERPARTY_ID, label: counterparty.COUNTERPARTY_NAME}));
+
+        console.log(this.counterparty)
+
+    }
+
+
+    public async test(){
     console.log(this.select_value)
     console.log(this.slider_value)
 
-    const foundationDropdownMenu = document.querySelector('foundation-dropdown-menu');
-        foundationDropdownMenu.items = showcaseDropdown;
 
     if (this.select_value == 'm'){
         this.slider_value = 50
