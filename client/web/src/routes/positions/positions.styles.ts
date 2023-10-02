@@ -5,4 +5,5 @@ export const positionsStyles = css`
     h2 {
         color: green;
     }
+
 `;
