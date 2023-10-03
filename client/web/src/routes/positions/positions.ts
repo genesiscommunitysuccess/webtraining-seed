@@ -1,12 +1,11 @@
 import {customElement, FASTElement, observable} from '@microsoft/fast-element';
 import {positionsTemplate as template} from './positions.template';
 import {positionsStyles as styles} from './positions.styles';
-import {TextField} from '@genesislcap/foundation-zero';
-
-const name = 'positions-route'
+import {TextField, Combobox, Select} from '@genesislcap/foundation-zero';
+import { Modal as alphaModal, Dialog as AlphaDialog} from '@genesislcap/alpha-design-system';
 
 @customElement({
-    name,
+    name: "positions-route",
     template,
     styles
 })
@@ -25,17 +24,39 @@ export class Positions extends FASTElement {
     @observable selectOptions: Array<{value: string, label: string}> = []
     @observable selected_value: string
 
+    environmentAlertModal: alphaModal;
+    combo : Combobox;
+    localDialog: AlphaDialog;
+    zeroSelect: Select;
 
+
+    openModal(){
+        this.environmentAlertModal.show()
+    }
+
+    closeModal(){
+        this.environmentAlertModal.close()
+    }
     display(x){
+        console.log(this.zeroSelect.length)
         console.log(x)
     }
     connectedCallback(){
         super.connectedCallback()
+
+
+         this.environmentAlertModal.onShowCallback = () => {
+                alert("yes, it worked")
+            }
+
+         this.environmentAlertModal.onCloseCallback = () => {
+                alert("yes, it worked too")
+            }
+
         this.number_field= 50
         for (let i = 0; i < 4; i++) {
           this.options.push("Label " + i);
           this.selectOptions.push({value:"v" + i, label: "Label " + i})
         }
-        console.log("I was here")
     }
 }
