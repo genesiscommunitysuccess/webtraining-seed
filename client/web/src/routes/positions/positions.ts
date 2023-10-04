@@ -2,7 +2,7 @@ import {customElement, FASTElement, observable} from '@microsoft/fast-element';
 import {positionsTemplate as template} from './positions.template';
 import {positionsStyles as styles} from './positions.styles';
 import {TextField, Combobox, Select} from '@genesislcap/foundation-zero';
-import { Modal as alphaModal, Dialog as AlphaDialog} from '@genesislcap/alpha-design-system';
+import { Modal as alphaModal, Dialog as AlphaDialog, Menu} from '@genesislcap/alpha-design-system';
 
 @customElement({
     name: "positions-route",
@@ -28,12 +28,15 @@ export class Positions extends FASTElement {
     combo : Combobox;
     localDialog: AlphaDialog;
     zeroSelect: Select;
-
+    zeroMenu: Menu;
 
     openModal(){
         this.environmentAlertModal.show()
     }
 
+    close(){
+        this.zeroMenu.collapseExpandedItem() // Does not work
+    }
     closeModal(){
         this.environmentAlertModal.close()
     }
@@ -43,7 +46,6 @@ export class Positions extends FASTElement {
     }
     connectedCallback(){
         super.connectedCallback()
-
 
          this.environmentAlertModal.onShowCallback = () => {
                 alert("yes, it worked")

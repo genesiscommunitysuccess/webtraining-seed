@@ -31,6 +31,7 @@ export const positionsTemplate = html<Positions>`
 
     </form>
  <zero-button form="hi" @click=${x => x.display(x.number_field)} type="reset" >Reset</zero-button>
+ <zero-button form="hi" @click=${x => x.close()}>close</zero-button>
 
 
   <alpha-button id="js-alpha-show-modal" appearance="accent" @click=${x => x.environmentAlertModal.show()}>Show Rapid Modal</alpha-button>
@@ -48,17 +49,17 @@ export const positionsTemplate = html<Positions>`
     </alpha-dialog>
 
 
-<zero-menu>
-    <zero-menu-item @click=${(x) => alert("clicked me")} @changed=${(x) => alert("changed me")} >Menu item one</zero-menu-item>
+<zero-menu @click=${() => console.log("you clicked on me")}>
+    <zero-menu-item @change=${() => console.log("you changed me")}>Menu item one</zero-menu-item>
     <zero-menu-item>Menu item two</zero-menu-item>
-    <zero-menu-item >
+    <zero-menu-item expanded>
         Menu item three
-        <zero-menu slot="submenu" >
+        <zero-menu>
             <zero-menu-item >Nested item one</zero-menu-item>
             <zero-menu-item>Nested item two</zero-menu-item>
-            <zero-menu-item @expanded-change=${() => console.log("expanded me")}>
+            <zero-menu-item>
                 Nested item three
-                <zero-menu slot="submenu">
+                <zero-menu>
                     <zero-menu-item>Nested item one</zero-menu-item>
                     <zero-menu-item>Nested item two</zero-menu-item>
                 </zero-menu>
