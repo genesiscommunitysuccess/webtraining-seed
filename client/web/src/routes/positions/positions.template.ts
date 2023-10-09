@@ -49,13 +49,13 @@ export const positionsTemplate = html<Positions>`
     </alpha-dialog>
 
 
-<zero-menu @click=${() => console.log("you clicked on me")}>
+<zero-menu>
     <zero-menu-item @change=${() => console.log("you changed me")}>Menu item one</zero-menu-item>
     <zero-menu-item>Menu item two</zero-menu-item>
     <zero-menu-item expanded>
         Menu item three
         <zero-menu>
-            <zero-menu-item >Nested item one</zero-menu-item>
+            <zero-menu-item disabled @click=${() => console.log("clickd on me")} @change=${() => console.log("i was cliked")} >Nested item one</zero-menu-item>
             <zero-menu-item>Nested item two</zero-menu-item>
             <zero-menu-item>
                 Nested item three

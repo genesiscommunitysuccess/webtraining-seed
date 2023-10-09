@@ -1,8 +1,7 @@
 import {customElement, FASTElement, observable} from '@microsoft/fast-element';
 import {positionsTemplate as template} from './positions.template';
 import {positionsStyles as styles} from './positions.styles';
-import {TextField, Combobox, Select} from '@genesislcap/foundation-zero';
-import { Modal as alphaModal, Dialog as AlphaDialog, Menu} from '@genesislcap/alpha-design-system';
+import {TextField, Combobox, Select, Modal as zeroModal, Dialog as zeroDialog, Menu} from '@genesislcap/foundation-zero';
 
 @customElement({
     name: "positions-route",
@@ -24,9 +23,9 @@ export class Positions extends FASTElement {
     @observable selectOptions: Array<{value: string, label: string}> = []
     @observable selected_value: string
 
-    environmentAlertModal: alphaModal;
+    environmentAlertModal: zeroModal;
     combo : Combobox;
-    localDialog: AlphaDialog;
+    localDialog: zeroDialog;
     zeroSelect: Select;
     zeroMenu: Menu;
 
