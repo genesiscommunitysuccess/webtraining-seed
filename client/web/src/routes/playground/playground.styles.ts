@@ -6,7 +6,5 @@ export const playgroundStyles = css`
         color: red;
     }
 
-    .half-page {
-        width: 50%;
-    }
+
 `;

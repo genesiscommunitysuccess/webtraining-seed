@@ -13,6 +13,7 @@ systemDefinition {
         item(name = "DbHost", value = "jdbc:postgresql://localhost:5432/postgres?user=postgres&password=postgres")
         item(name = "DbMode", value = "VANILLA")
         item(name = "GenesisNetProtocol", value = "V2")
+        item(name = "GenesisConsoleEnabled", value = false)
         item(name = "ResourcePollerTimeout", value = "5")
         item(name = "ReqRepTimeout", value = "60")
         item(name = "MetadataChronicleMapAverageKeySizeBytes", value = "128")
