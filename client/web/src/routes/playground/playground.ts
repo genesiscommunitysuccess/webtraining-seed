@@ -1,6 +1,7 @@
 import {customElement, FASTElement, observable} from '@microsoft/fast-element';
 import {myTemplate as template} from './playground.template';
 import {playgroundStyles as styles} from './playground.styles';
+import {Slider} from '@genesislcap/foundation-zero'
 
 const name = 'playground-route'
 
@@ -12,5 +13,10 @@ const name = 'playground-route'
 
 export class Playground extends FASTElement {
 
-    @observable text_value: string
+    connectedCallback(){
+        super.connectedCallback();
+        var elementInsideShadowDOM = this.shadowRoot.getElementById('slider') as Slider;
+        console.log(elementInsideShadowDOM.max)
+    }
+
 }

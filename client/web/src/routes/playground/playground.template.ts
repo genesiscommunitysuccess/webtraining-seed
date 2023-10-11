@@ -7,24 +7,18 @@ import {sync} from '@genesislcap/foundation-utils';
 export const myTemplate = html<Playground>`
     <h2>This is my first component</h2>
 
-    <!-- text-field / text-area / number-field -->
+    <!-- Slider -->
+    <zero-slider id="slider" min="0" max="100" step="10">
+        Slider
+        <zero-slider-label
+            position=50 >
+            Trigger
+        </zero-slider-label>
+    </zero-slider>
 
-    <zero-text-field>Text_field</zero-text-field>
-    <zero-text-area>Text_Area</zero-text-area>
-    <zero-number-field>Number_field</zero-number-field>
-
-
-    <!-- Read only component -->
-
-    <zero-text-field readonly>Read Only</zero-text-field>
-
-    <!-- Placeholder component -->
-
-    <zero-text-field placeholder="This is a placeholder">Read Only</zero-text-field>
+    <!-- Checkbox -->
+    <zero-checkbox>Checkbox</zero-checkbox>
 
 
-    <!-- @change event -->
-
-    <zero-text-field :value=${(sync(x => x.text_value))} @change=${(x) => console.log(x.text_value)}>Insert your name</zero-text-field>
-
+    <!-- Components to display information -->
 `;

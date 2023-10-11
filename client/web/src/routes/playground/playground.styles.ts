@@ -9,4 +9,8 @@ export const playgroundStyles = css`
     .half-page {
         width: 50%;
     }
+
+    zero-text-field:invalid {
+        border: 2px dashed red;
+    }
 `;
