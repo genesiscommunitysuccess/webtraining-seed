@@ -16,6 +16,7 @@ import {Reporting} from '@genesislcap/foundation-reporting';
 import {Playground} from './playground/playground';
 import {Positions} from './positions/positions';
 import {Orders} from './orders/orders';
+import {UserRegistration} from './userRegistration/userRegistration';
 
 type RouterSettings = {
   autoAuth?: boolean;
@@ -36,6 +37,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
     {index: 2, path: 'playground', title: 'Playground', icon: 'gear', variant: 'solid'},
     {index: 3, path: 'positions', title: 'Positions', icon: 'gear', variant: 'solid'},
     {index: 4, path: 'orders', title: 'Orders', icon: 'gear', variant: 'solid'},
+    {index: 5, path: 'userRegistration', title: 'User Registration', icon: 'gear', variant: 'solid'},
   ];
 
   public configure() {
@@ -77,6 +79,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
       {path: 'playground', element: Playground, title: 'Playground', name: 'playground', settings: commonSettings},
       {path: 'positions', element: Positions, title: 'Positions', name: 'positions', settings: commonSettings},
       {path: 'orders', element: Orders, title: 'Orders', name: 'orders', settings: commonSettings},
+      {path: 'userRegistration', element: UserRegistration, title: 'User Registration', name: 'userRegistration', settings: commonSettings},
     );
 
     const auth = this.auth;
