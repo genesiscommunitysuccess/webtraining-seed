@@ -52,3 +52,4 @@ server/jvm/server/position-deploy/gradle.properties
 
 # Dependency directories
 node_modules
+/.genesis-home/
