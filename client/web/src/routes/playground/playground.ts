@@ -1,11 +1,10 @@
 import {customElement, FASTElement, observable} from '@microsoft/fast-element';
 import {myTemplate as template} from './playground.template';
 import {playgroundStyles as styles} from './playground.styles';
-
-const name = 'playground-route'
+import {Tabs} from '@genesislcap/foundation-zero';
 
 @customElement({
-    name,
+    name: "playground-route",
     template,
     styles
 })
@@ -13,6 +12,17 @@ const name = 'playground-route'
 
 
 export class Playground extends FASTElement {
+    localTabs: Tabs
+    @observable tabId: string
 
+    changeValues(){
+        this.tabId = this.localTabs.activeid
+    }
+
+    connectedCallback(){
+        super.connectedCallback()
+
+        this.tabId = this.localTabs.activeid
+    }
 
 }

@@ -27,7 +27,7 @@ export const userRegistrationTemplate = html<UserRegistration>`
                 <zero-option>Other</zero-option>
             </zero-select>
             <zero-button ${ref('submitButton')} @click=${(x) => x.submitForms()}>Submit</zero-button>
-            <zero-button styles="display: block" type="reset">Reset</zero-button>
+            <zero-button styles="display: block" type="reset" @click=${(x) => x.reset()}>Reset</zero-button>
         </form>
     </zero-modal>
 
