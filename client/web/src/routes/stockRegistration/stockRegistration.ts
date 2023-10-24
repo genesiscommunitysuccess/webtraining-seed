@@ -1,15 +1,13 @@
 import {customElement, FASTElement, observable} from '@microsoft/fast-element';
 import {stockRegistrationTemplate as template} from './stockRegistration.template';
 import {stockRegistrationStyles as styles} from './stockRegistration.styles';
-import {Tabs, Modal} from '@genesislcap/foundation-zero';
+import {Tabs, Modal } from '@genesislcap/foundation-zero';
 
 @customElement({
     name: "stock-route",
     template,
     styles
 })
-
-
 
 export class StockRegistration extends FASTElement {
 
@@ -30,12 +28,50 @@ export class StockRegistration extends FASTElement {
         tradingVolume: number;
         CEOName: string;
     }[] = [];
+
     @observable displayStock = [] as typeof this.listOfStock;
     @observable selectStock: string;
+    @observable edit: boolean = false;
 
     count: number = 0;
 
     addNewStock(){
+        if(!this.validateForms()) { return }
+        this.addToStockList();
+        this.addToDisplay();
+        this.newStockModal.close();
+        this.resetForms();
+    }
+
+    modify(){
+        const currentTabId = this.displayTabs.activeid
+        const indexlist = this.listOfStock.findIndex( (stock) => String(stock.stockId) ==  currentTabId)
+        const indexdisplay = this.displayStock.findIndex( (stock) => String(stock.stockId) ==  currentTabId)
+
+        if(!this.validateForms()) { return }
+        this.displayStock.splice(indexdisplay,1)
+    /*    this.listOfStock.splice(indexdisplay,1)
+        this.selectStock = this.displayStock[indexdisplay].symbol
+        this.addToStockList() */
+
+        this.listOfStock[indexlist].companyName = this.companyName
+        this.listOfStock[indexlist].symbol = this.symbol
+        this.listOfStock[indexlist].price = this.price
+        this.listOfStock[indexlist].tradingVolume = this.tradingVolume
+        this.listOfStock[indexlist].CEOName = this.CEOName
+
+        this.selectStock = this.listOfStock[indexlist].symbol
+        console.log(this.listOfStock)
+        console.log(this.selectStock)
+        this.listOfStock = [...this.listOfStock];
+        console.log(this.listOfStock)
+        console.log(this.selectStock)
+        this.addToDisplay()
+        this.newStockModal.close();
+        this.resetForms();
+    }
+
+    addToStockList(){
         this.listOfStock.push({
             stockId: this.stockId,
             companyName: this.companyName,
@@ -44,6 +80,8 @@ export class StockRegistration extends FASTElement {
             tradingVolume: this.tradingVolume,
             CEOName: this.CEOName,
         });
+    }
+    addToDisplay(){
         this.displayStock.push({
             stockId: this.stockId,
             companyName: this.companyName,
@@ -52,22 +90,49 @@ export class StockRegistration extends FASTElement {
             tradingVolume: this.tradingVolume,
             CEOName: this.CEOName,
         });
-        this.newStockModal.close();
-        this.resetForms();
     }
 
     openModal(){
+        this.edit = false;
         this.stockId = Math.floor(Math.random() * 9000000000) + 1000000000;
         this.newStockModal.show();
     }
 
-    closeTab(){
+    editStock(){
         const currentTabId = this.displayTabs.activeid
         const index = this.listOfStock.findIndex( (stock) => String(stock.stockId) ==  currentTabId)
+        const tempStock = this.listOfStock[index];
+
+        this.newStockModal.show();
+        this.stockId = tempStock.stockId;
+        this.companyName = tempStock.companyName;
+        this.symbol = tempStock.symbol;
+        this.price = tempStock.price;
+        this.tradingVolume = tempStock.tradingVolume;
+        this.CEOName = tempStock.CEOName;
+        this.edit = true;
+    }
+
+    deleteStock(){
+        const currentTabId = this.displayTabs.activeid
+        const indexlist = this.listOfStock.findIndex( (stock) => String(stock.stockId) ==  currentTabId)
+        const indexdisplay = this.displayStock.findIndex( (stock) => String(stock.stockId) ==  currentTabId)
+
+        this.listOfStock.splice(indexlist,1);
+        this.displayStock.splice(indexdisplay,1);
+
+    }
+
+    closeTab(){
+        const currentTabId = this.displayTabs.activeid
+        const index = this.displayStock.findIndex( (stock) => String(stock.stockId) ==  currentTabId)
         this.displayStock.splice(index,1)
     }
 
     selectedStock(){
+        if (this.selectStock == null){
+            this.selectStock = "";
+        }
         const index = this.listOfStock.findIndex( (stock) => String(stock.stockId) ==  this.selectStock)
 
         if(this.displayStock.findIndex( (stock) => String(stock.stockId) == this.selectStock) < 0){
@@ -95,5 +160,13 @@ export class StockRegistration extends FASTElement {
         }
     }
 
+    validateForms(){
+        if( this.symbol == null || this.symbol.length < 3){
+            alert("Stock symbol needs to be at least 3 characters long")
+            return false
+        } else {
+            return true
+        }
+    }
 
 }
