@@ -7,13 +7,13 @@ export const stockRegistrationTemplate = html<StockRegistration>`
     <h2> Stock Registration Page</h2>
 
     <zero-button @click=${(x) => x.openModal()}>Add new stock</zero-button>
-    <zero-select :value=${sync((x) => x.selectStock)} @change=${(x) => x.selectedStock()} id="selectStock">
+    <zero-select open :value=${sync((x) => x.selectStock)} @change=${(x) => x.selectedStock()} id="selectStock">
         ${repeat((x) => x.listOfStock, html`
             <zero-option value=${(x) => x.stockId}>${(x) => x.symbol}</zero-option>
         `)}
     </zero-select>
     <hr>
-    <zero-tabs activeid="Tab1" ${ref('displayTabs')}>
+    <zero-tabs activeid="Tab1" ${ref('displayTabs')} @change=${(x) => x.changeTabs()}>
         ${repeat(x => x.displayStock, html`
                 <zero-tab id=${x => x.stockId}>
                     ${x => x.symbol}

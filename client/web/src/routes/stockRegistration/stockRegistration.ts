@@ -64,7 +64,8 @@ export class StockRegistration extends FASTElement {
         this.listOfStock = [...this.listOfStock];
         console.log(this.listOfStock)
         console.log(this.selectStock)
-        */
+
+*/
 
         this.selectStock = String(this.listOfStock[indexlist].stockId)
         this.addToDisplay()
@@ -144,6 +145,10 @@ export class StockRegistration extends FASTElement {
             this.displayTabs.activeid = this.selectStock
         }
 
+    }
+
+    changeTabs(){
+      this.selectStock = this.displayTabs.activeid
     }
 
     resetForms(){
