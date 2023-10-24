@@ -50,22 +50,23 @@ export class StockRegistration extends FASTElement {
 
         if(!this.validateForms()) { return }
         this.displayStock.splice(indexdisplay,1)
-    /*    this.listOfStock.splice(indexdisplay,1)
-        this.selectStock = this.displayStock[indexdisplay].symbol
-        this.addToStockList() */
-
+        this.listOfStock.splice(indexdisplay,1)
+        this.addToStockList()
+/*
         this.listOfStock[indexlist].companyName = this.companyName
         this.listOfStock[indexlist].symbol = this.symbol
         this.listOfStock[indexlist].price = this.price
         this.listOfStock[indexlist].tradingVolume = this.tradingVolume
         this.listOfStock[indexlist].CEOName = this.CEOName
 
-        this.selectStock = this.listOfStock[indexlist].symbol
         console.log(this.listOfStock)
         console.log(this.selectStock)
         this.listOfStock = [...this.listOfStock];
         console.log(this.listOfStock)
         console.log(this.selectStock)
+        */
+
+        this.selectStock = String(this.listOfStock[indexlist].stockId)
         this.addToDisplay()
         this.newStockModal.close();
         this.resetForms();
@@ -133,6 +134,7 @@ export class StockRegistration extends FASTElement {
         if (this.selectStock == null){
             this.selectStock = "";
         }
+        console.log("selectedStock(): " + this.selectStock)
         const index = this.listOfStock.findIndex( (stock) => String(stock.stockId) ==  this.selectStock)
 
         if(this.displayStock.findIndex( (stock) => String(stock.stockId) == this.selectStock) < 0){
