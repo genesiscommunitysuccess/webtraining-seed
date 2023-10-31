@@ -1,11 +1,8 @@
-import java.io.File
-import java.time.LocalDate
 import global.genesis.TradeStateMachine
-import global.genesis.commons.standards.GenesisPaths
-import global.genesis.gen.dao.repository.PositionAsyncRepository
+import global.genesis.gen.dao.Trade
+import global.genesis.alpha.message.event.TradeAllocated
+import global.genesis.alpha.message.event.TradeCancelled
 import global.genesis.gen.view.repository.TradeViewAsyncRepository
-import global.genesis.jackson.core.GenesisJacksonMapper
-import global.genesis.jackson.core.GenesisJacksonMapper.Companion.toJsonString
 
 /**
  * System              : Genesis Business Library
@@ -18,14 +15,12 @@ import global.genesis.jackson.core.GenesisJacksonMapper.Companion.toJsonString
  * Modification History
  */
 val tradeViewRepo = inject<TradeViewAsyncRepository>()
-val positionRepo = inject<PositionAsyncRepository>()
 
 eventHandler {
     val stateMachine = inject<TradeStateMachine>()
 
     eventHandler<Trade>(name = "TRADE_INSERT") {
         schemaValidation = false
-        permissionCodes = listOf("INSERT_TRADE")
         onValidate { event ->
             val message = event.details
             verify {
@@ -122,48 +117,6 @@ eventHandler {
             stateMachine.modify(entityDb, message.tradeId) { trade ->
                 trade.tradeStatus = TradeStatus.ALLOCATED
             }
-            ack()
-        }
-    }
-
-    eventHandler<PositionReport> {
-        onCommit {
-            val mapper = GenesisJacksonMapper.csvWriter<TradeView>()
-            val today = LocalDate.now().toString()
-            val positionReportFolder = File(GenesisPaths.runtime()).resolve("position-minute-report")
-            if (!positionReportFolder.exists()) positionReportFolder.mkdirs()
-
-            tradeViewRepo.getBulk()
-                .toList()
-                .groupBy { it.counterpartyName }
-                .forEach { (counterParty, trades) ->
-                    val file = positionReportFolder.resolve("${counterParty}_$today.csv")
-                    if (file.exists()) file.delete()
-                    mapper.writeValues(file).use { it.writeAll(trades) }
-                }
-
-            ack()
-        }
-    }
-
-    eventHandler<Order>(name = "ORDER_INSERT", transactional = true) {
-        schemaValidation = false
-        onCommit { event ->
-            entityDb.insert(event.details)
-            ack()
-        }
-    }
-
-    eventHandler<Order>(name = "ORDER_MODIFY", transactional = true) {
-        onCommit { event ->
-            entityDb.modify(event.details)
-            ack()
-        }
-    }
-
-    eventHandler<Order>(name = "ORDER_CANCEL", transactional = true) {
-        onCommit { event ->
-            entityDb.delete(event.details)
             ack()
         }
     }

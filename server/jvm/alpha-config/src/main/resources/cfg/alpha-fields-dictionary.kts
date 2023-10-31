@@ -39,7 +39,4 @@ fields {
     field("VALUE", type = DOUBLE)
     field("PNL", type = DOUBLE)
 
-    field("NOTES", type = STRING)
-    field("ORDER_ID", type = STRING)
 }
-
