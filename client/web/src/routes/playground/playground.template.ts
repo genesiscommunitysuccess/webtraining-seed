@@ -1,4 +1,4 @@
-import {html, ref, repeat} from '@microsoft/fast-element';
+import {html, ref, repeat, when} from '@microsoft/fast-element';
 import {Playground} from './playground';
 import {playgroundStyles} from './playground.styles';
 import {sync} from '@genesislcap/foundation-utils'
@@ -38,8 +38,20 @@ export const myTemplate = html<Playground>`
                     <zero-option :value=${(x) => x}>${(x) => x}</zero-option>
                 `)}
             </zero-select>
-            <zero-button @click=${(x) => x.submitTrade()}>Submit</zero-button>
+            ${when((x) => x.modify, html`
+                <zero-button @click=${(x) => x.modifyTrade()}>Modify</zero-button>
+            `, html`
+                <zero-button @click=${(x) => x.submitTrade()}>Submit</zero-button>
+            `)}
+
         </form>
     </zero-modal>
 
+    <zero-grid-pro ${ref('tradeGrid')} only-template-col-defs>
+        <grid-pro-genesis-datasource
+            resource-name="ALL_TRADES"/>
+            ${repeat((x) => x.columnsDefTrade, html`
+                <grid-pro-column :definition=${x => x}></grid-pro-column>
+            `)}
+    </zero-grid-pro>
 `;

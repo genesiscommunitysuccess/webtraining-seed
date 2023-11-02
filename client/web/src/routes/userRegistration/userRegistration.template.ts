@@ -30,5 +30,4 @@ export const userRegistrationTemplate = html<UserRegistration>`
             <zero-button styles="display: block" type="reset">Reset</zero-button>
         </form>
     </zero-modal>
-
 `;

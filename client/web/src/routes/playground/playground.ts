@@ -3,7 +3,7 @@ import {myTemplate as template} from './playground.template';
 import {playgroundStyles as styles} from './playground.styles';
 import {Connect} from '@genesislcap/foundation-comms';
 import {Modal} from '@genesislcap/foundation-zero'
-import {logger} from '../../utils';
+import {GridPro} from '@genesislcap/grid-pro';
 
 const name = 'playground-route'
 
@@ -28,27 +28,78 @@ export class Playground extends FASTElement {
     @observable quantity: number;
     @observable price: number;
     @observable status: string;
-
+    @observable modify: boolean;
+    trade_id: string;
+    @observable columnsDefTrade = [
+        {field: "TRADE_ID", onCellDoubleClicked: (e) => this.openModifyModal(e.data)},
+        {field: "DIRECTION"},
+        {field: "COUNTERPARTY_ID"},
+        {field: "INSTRUMENT_ID"},
+        {field: "QUANTITY"},
+        {field: "PRICE"},
+        {field: "SYMBOL"},
+        {field: "TRADE_STATUS"},
+    ]
+    tradeGrid: GridPro
 
     newTradeModal: Modal
 
+     async modifyTrade(){
+            const modifyTradeEvent = await this.connection.commitEvent('EVENT_TRADE_MODIFY', {
+                    DETAILS: {
+                        TRADE_ID: this.trade_id,
+                        DIRECTION: this.direction,
+                        SYMBOL: this.symbol,
+                        COUNTERPARTY_ID: this.counterpartyId,
+                        INSTRUMENT_ID: this.instrumentId,
+                        QUANTITY: this.quantity,
+                        PRICE: this.price,
+                        TRADE_STATUS: this.status
+                    }
+                },)
+                    console.log(modifyTradeEvent)
+                    this.newTradeModal.close()
+        }
+
+
+        openModifyModal(rowData){
+            this.modify = true
+            this.trade_id = rowData.TRADE_ID
+            this.direction = rowData.DIRECTION
+            this.symbol = rowData.SYMBOL
+            this.counterpartyId = rowData.COUNTERPARTY_ID
+            this.instrumentId = rowData.INSTRUMENT_ID
+            this.quantity = rowData.QUANTITY
+            this.price = rowData.PRICE
+            this.status = rowData.TRADE_STATUS
+            this.newTradeModal.show()
+        }
 
     createInsertTradeForms(){
+        this.modify = false
+        this.direction = 'BUY'
+        this.symbol = ''
+        this.counterpartyId = ''
+        this.instrumentId = ''
+        this.quantity = null
+        this.price = null
+        this.status = 'NEW'
         this.newTradeModal.show()
     }
 
     async submitTrade(){
-    const insertTradeEvent = await this.connection.commitEvent('EVENT_TRADE_INSERT', {
-        DETAILS: {
-            DIRECTION: this.direction,
-            SYMBOL: this.symbol,
-            COUNTERPARTY_ID: this.counterpartyId,
-            INSTRUMENT_ID: this.instrumentId,
-            QUANTITY: this.quantity,
-        }
-    },)
-        console.log(insertTradeEvent)
-        this.newTradeModal.close()
+        const insertTradeEvent = await this.connection.commitEvent('EVENT_TRADE_INSERT', {
+            DETAILS: {
+                DIRECTION: this.direction,
+                SYMBOL: this.symbol,
+                COUNTERPARTY_ID: this.counterpartyId,
+                INSTRUMENT_ID: this.instrumentId,
+                QUANTITY: this.quantity,
+                PRICE: this.price,
+                STATUS: this.status
+            }
+        },)
+            this.newTradeModal.close()
     }
 
     async connectedCallback() {
@@ -77,7 +128,6 @@ export class Playground extends FASTElement {
             name: row.INSTRUMENT_NAME
         })));
         this.instrumentId = this.availableInstrument[0].id;
-
     }
 
 }

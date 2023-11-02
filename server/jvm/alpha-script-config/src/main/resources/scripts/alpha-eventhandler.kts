@@ -44,6 +44,7 @@ eventHandler {
     }
 
     eventHandler<Trade>(name = "TRADE_MODIFY", transactional = true) {
+        schemaValidation = false
         onValidate { event ->
             val message = event.details
             verify {
