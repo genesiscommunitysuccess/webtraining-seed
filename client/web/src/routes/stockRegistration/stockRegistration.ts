@@ -35,12 +35,12 @@ export class StockRegistration extends FASTElement {
                                  }[] = [];
 
     @observable columnsDefStock = [
-        {field: 'STOCK_ID', onCellDoubleClicked: (e) => console.log(e.data)},
-        {field: "SYMBOL"},
-        {field: "CEO"},
-        {field: "COMPANY_NAME"},
-        {field: "PRICE"},
-        {field: "TRADING_VOLUME"},
+        {headerName: "Stock Id", field: "STOCK_ID"},
+        {headerName: "Symbol", field: "SYMBOL"},
+        {headerName: "CEO", field: "CEO"},
+        {headerName: "Company Name", field: "COMPANY_NAME"},
+        {headerName: "Price", field: "PRICE"},
+        {headerName: "Trading Volume", field: "TRADING_VOLUME"},
     ]
 
     @observable actionMenuDefs = getActionsMenuDef (

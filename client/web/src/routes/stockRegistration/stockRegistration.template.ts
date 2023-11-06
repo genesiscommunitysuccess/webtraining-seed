@@ -7,13 +7,15 @@ export const stockRegistrationTemplate = html<StockRegistration>`
     <h2> Stock Registration Page</h2>
 
     <zero-button @click=${(x) => x.openModal()}>Add new stock</zero-button>
-    <zero-layout style="height: 420px;">
+    <zero-layout style="height: 300px;">
         <zero-layout-region type="horizontal">
             <zero-layout-region type="vertical">
                 <zero-layout-item>
-                    <zero-grid-pro>
+                    <zero-grid-pro only-template-col-defs>
                         <grid-pro-genesis-datasource resource-name="ALL_STOCKS"/>
-                        <grid-pro-column :definition=${(x) => x.actionMenuDefs}></grid-pro-column>
+                        ${repeat((x) => x.columnsDefStock, html`
+                            <grid-pro-column :definition=${x => x}></grid-pro-column>
+                        `)}
                     </zero-grid-pro>
                 </zero-layout-item>
                 <zero-layout-item>
@@ -46,6 +48,12 @@ export const stockRegistrationTemplate = html<StockRegistration>`
         </zero-layout-region>
     </zero-layout>
 
+    <zero-grid-pro only-template-col-defs ">
+            <grid-pro-genesis-datasource resource-name="ALL_STOCKS"/>
+            ${repeat((x) => x.columnsDefStock, html`
+                <grid-pro-column :definition=${x => x}></grid-pro-column>
+            `)}
+        </zero-grid-pro>
 
 
     <zero-modal ${ref('newStockModal')} position="right" id="stockModal" class="ScrollOn">
