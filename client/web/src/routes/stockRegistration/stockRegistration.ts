@@ -2,7 +2,9 @@ import {customElement, FASTElement, observable} from '@microsoft/fast-element';
 import {stockRegistrationTemplate as template} from './stockRegistration.template';
 import {stockRegistrationStyles as styles} from './stockRegistration.styles';
 import {Tabs, Modal} from '@genesislcap/foundation-zero';
-import {Connect} from '@genesislcap/foundation-comms'
+import {Connect} from '@genesislcap/foundation-comms';
+import {GridPro} from '@genesislcap/grid-pro';
+import {getActionsMenuDef} from '@genesislcap/grid-pro';
 
 @customElement({
     name: "stock-route",
@@ -21,84 +23,66 @@ export class StockRegistration extends FASTElement {
     @observable price: number;
     @observable tradingVolume: number
     @observable CEOName: string;
-    @observable listOfStock: {
-        stockId: number;
-        companyName: string;
-        symbol: string;
-        price: number;
-        tradingVolume: number;
-        CEOName: string;
-    }[] = [];
+    @observable listOfStock
+    stockGrid: GridPro
+    @observable displayStock: {
+                                     stockId: number;
+                                     companyName: string;
+                                     symbol: string;
+                                     price: number;
+                                     tradingVolume: number;
+                                     CEOName: string;
+                                 }[] = [];
 
-    @observable displayStock = [] as typeof this.listOfStock;
+    @observable columnsDefStock = [
+        {field: 'STOCK_ID', onCellDoubleClicked: (e) => console.log(e.data)},
+        {field: "SYMBOL"},
+        {field: "CEO"},
+        {field: "COMPANY_NAME"},
+        {field: "PRICE"},
+        {field: "TRADING_VOLUME"},
+    ]
+
+    @observable actionMenuDefs = getActionsMenuDef (
+        [
+            {
+                name: 'view',
+                callback: rowData => this.updateDisplayedStock(rowData)
+            }
+        ],
+        {
+            headerName: 'action',
+            width: 100
+        },
+        '+'
+    )
+
+
     @observable selectStock: string;
     @observable edit: boolean = false;
 
     count: number = 0;
+     @observable chartConfiguration = {
+        xField: 'groupBy',
+        yField: 'value',
+        };
 
-    addNewStock(){
-        if(!this.validateForms()) { return }
-        this.addToStockList();
-        this.addToDisplay();
-        this.newStockModal.close();
-        this.resetForms();
-    }
 
-    modify(){
-        const currentTabId = this.displayTabs.activeid
-        const indexlist = this.listOfStock.findIndex( (stock) => String(stock.stockId) ==  currentTabId)
-        const indexdisplay = this.displayStock.findIndex( (stock) => String(stock.stockId) ==  currentTabId)
 
-        if(!this.validateForms()) { return }
-        this.displayStock.splice(indexdisplay,1)
-        this.listOfStock.splice(indexdisplay,1)
-        this.addToStockList()
-/*
-        this.listOfStock[indexlist].companyName = this.companyName
-        this.listOfStock[indexlist].symbol = this.symbol
-        this.listOfStock[indexlist].price = this.price
-        this.listOfStock[indexlist].tradingVolume = this.tradingVolume
-        this.listOfStock[indexlist].CEOName = this.CEOName
-
-        console.log(this.listOfStock)
-        console.log(this.selectStock)
-        this.listOfStock = [...this.listOfStock];
-        console.log(this.listOfStock)
-        console.log(this.selectStock)
-
-*/
-
-        this.selectStock = String(this.listOfStock[indexlist].stockId)
-        this.addToDisplay()
-        this.newStockModal.close();
-        this.resetForms();
-    }
-
-    addToStockList(){
-        this.listOfStock.push({
-            stockId: this.stockId,
-            companyName: this.companyName,
-            symbol: this.symbol,
-            price: this.price,
-            tradingVolume: this.tradingVolume,
-            CEOName: this.CEOName,
-        });
-    }
-    addToDisplay(){
-        this.displayStock.push({
-            stockId: this.stockId,
-            companyName: this.companyName,
-            symbol: this.symbol,
-            price: this.price,
-            tradingVolume: this.tradingVolume,
-            CEOName: this.CEOName,
-        });
-    }
 
     openModal(){
-        this.edit = false;
-        this.stockId = Math.floor(Math.random() * 9000000000) + 1000000000;
         this.newStockModal.show();
+        console.log(this.columnsDefStock)
+    }
+    updateDisplayedStock(data){
+        this.displayStock.push({
+            stockId: data.STOCK_ID,
+            companyName: data.COMPANY_NAME,
+            symbol: data.SYMBOL,
+            price: data.PRICE,
+            tradingVolume: data.TRADING_VOLUME,
+            CEOName: data.CEO,
+        });
     }
 
     editStock(){
@@ -166,6 +150,7 @@ export class StockRegistration extends FASTElement {
         this.newStockModal.onCloseCallback = () =>{
             this.resetForms()
         }
+
     }
 
     validateForms(){
