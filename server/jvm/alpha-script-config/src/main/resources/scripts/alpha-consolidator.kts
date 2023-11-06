@@ -40,6 +40,8 @@ consolidators {
             val quantity = output.quantity ?: 0
             output.notional = input.price * quantity
             output.pnl = output.value - output.notional
+            output.symbol = input.symbol.toString()
+            output.instrumentName = input.instrumentName.toString()
         }
         groupBy {
             instrumentId
@@ -54,6 +56,8 @@ consolidators {
                     value = 0.0
                     pnl = 0.0
                     notional = 0.0
+                    symbol = ""
+                    instrumentName = ""
                 }
             }
         }
