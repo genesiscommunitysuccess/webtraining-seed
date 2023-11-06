@@ -1,7 +1,8 @@
 import {customElement, FASTElement, observable} from '@microsoft/fast-element';
 import {stockRegistrationTemplate as template} from './stockRegistration.template';
 import {stockRegistrationStyles as styles} from './stockRegistration.styles';
-import {Tabs, Modal } from '@genesislcap/foundation-zero';
+import {Tabs, Modal} from '@genesislcap/foundation-zero';
+import {Connect} from '@genesislcap/foundation-comms'
 
 @customElement({
     name: "stock-route",
@@ -13,7 +14,7 @@ export class StockRegistration extends FASTElement {
 
     displayTabs: Tabs;
     newStockModal: Modal;
-
+    connection: Connect;
     @observable stockId: number;
     @observable companyName: string;
     @observable symbol: string;

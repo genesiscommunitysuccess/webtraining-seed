@@ -121,4 +121,25 @@ eventHandler {
             ack()
         }
     }
+
+    eventHandler<Stock>(name = "STOCK_INSERT") {
+        onCommit { event ->
+            entityDb.insert(event.details)
+            ack()
+        }
+    }
+
+    eventHandler<Stock>(name = "STOCK_MODIFY") {
+        onCommit { event ->
+            entityDb.modify(event.details)
+            ack()
+        }
+    }
+
+    eventHandler<Stock>(name = "STOCK_DELETE") {
+        onCommit { event ->
+            entityDb.delete(event.details)
+            ack()
+        }
+    }
 }

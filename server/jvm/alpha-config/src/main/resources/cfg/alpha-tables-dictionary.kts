@@ -81,4 +81,18 @@ tables {
             INSTRUMENT_ID
         }
     }
+
+    table(name = "STOCK", id = 2005){
+        sequence(STOCK_ID, "ST")
+        COMPANY_NAME not null
+        SYMBOL not null
+        PRICE not null
+        TRADING_VOLUME not null
+        CEO not null
+
+        primaryKey {
+            STOCK_ID
+        }
+
+    }
 }
