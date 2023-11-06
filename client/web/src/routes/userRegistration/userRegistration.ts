@@ -70,4 +70,15 @@ export class UserRegistration extends FASTElement {
         alert(output)
     }
 
+    reset(){
+        this.name = null
+        this.emailAddress = null
+        this.password = null
+        this.repeatPassword =  null
+        this.age = null
+        this.phoneNumber = null
+        this.gender = null
+    }
+
+
 }

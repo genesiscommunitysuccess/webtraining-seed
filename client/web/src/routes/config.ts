@@ -17,6 +17,7 @@ import {Playground} from './playground/playground';
 import {Positions} from './positions/positions';
 import {Orders} from './orders/orders';
 import {UserRegistration} from './userRegistration/userRegistration';
+import {StockRegistration} from './stockRegistration/stockRegistration';
 
 type RouterSettings = {
   autoAuth?: boolean;
@@ -34,10 +35,11 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
 
   public allRoutes = [
     {index: 1, path: 'home', title: 'Home', icon: 'home', variant: 'solid'},
-    {index: 2, path: 'playground', title: 'Playground', icon: 'gear', variant: 'solid'},
+    {index: 2, path: 'playground', title: 'Playground', icon: 'briefcase', variant: 'solid'},
     {index: 3, path: 'positions', title: 'Positions', icon: 'gear', variant: 'solid'},
     {index: 4, path: 'orders', title: 'Orders', icon: 'gear', variant: 'solid'},
-    {index: 5, path: 'userRegistration', title: 'User Registration', icon: 'gear', variant: 'solid'},
+    {index: 5, path: 'userRegistration', title: 'User Registration', icon: 'user-plus', variant: 'solid'},
+    {index: 6, path: 'stockRegistration', title: 'Stock Registration', icon: 'money-bill', variant: 'solid'},
   ];
 
   public configure() {
@@ -80,6 +82,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
       {path: 'positions', element: Positions, title: 'Positions', name: 'positions', settings: commonSettings},
       {path: 'orders', element: Orders, title: 'Orders', name: 'orders', settings: commonSettings},
       {path: 'userRegistration', element: UserRegistration, title: 'User Registration', name: 'userRegistration', settings: commonSettings},
+      {path: 'stockRegistration', element: StockRegistration, title: 'Stock Registration', name: 'stockRegistration', settings: commonSettings},
     );
 
     const auth = this.auth;
