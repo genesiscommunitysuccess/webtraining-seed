@@ -2,6 +2,7 @@ import {customElement, FASTElement, observable} from '@microsoft/fast-element';
 import {stockRegistrationTemplate as template} from './stockRegistration.template';
 import {stockRegistrationStyles as styles} from './stockRegistration.styles';
 import {Tabs, Modal} from '@genesislcap/foundation-zero';
+import {Form} from '@genesislcap/foundation-forms';
 import {Connect} from '@genesislcap/foundation-comms';
 import {GridPro} from '@genesislcap/grid-pro';
 import {getActionsMenuDef} from '@genesislcap/grid-pro';
@@ -16,6 +17,7 @@ export class StockRegistration extends FASTElement {
 
     displayTabs: Tabs;
     newStockModal: Modal;
+    stockRegistration: Form;
     connection: Connect;
     @observable stockId: number;
     @observable companyName: string;
@@ -26,13 +28,13 @@ export class StockRegistration extends FASTElement {
     @observable listOfStock
     stockGrid: GridPro
     @observable displayStock: {
-                                     stockId: number;
-                                     companyName: string;
-                                     symbol: string;
-                                     price: number;
-                                     tradingVolume: number;
-                                     CEOName: string;
-                                 }[] = [];
+         stockId: number;
+         companyName: string;
+         symbol: string;
+         price: number;
+         tradingVolume: number;
+         CEOName: string;
+    }[] = [];
 
     @observable columnsDefStock = [
         {headerName: "Stock Id", field: "STOCK_ID"},
@@ -68,13 +70,13 @@ export class StockRegistration extends FASTElement {
         };
 
 
-
-
     openModal(){
         this.newStockModal.show();
         console.log(this.columnsDefStock)
     }
-    updateDisplayedStock(data){
+
+    updateDisplayedStock(event){
+    const data = event.detail.payload;
         this.displayStock.push({
             stockId: data.STOCK_ID,
             companyName: data.COMPANY_NAME,
@@ -83,6 +85,8 @@ export class StockRegistration extends FASTElement {
             tradingVolume: data.TRADING_VOLUME,
             CEOName: data.CEO,
         });
+    this.stockRegistration.reset();
+    this.newStockModal.close();
     }
 
     editStock(){
