@@ -24,4 +24,5 @@ dataServer {
     query("ALL_COUNTERPARTIES", COUNTERPARTY)
     query("ALL_POSITIONS", POSITION)
     query("ALL_STOCKS", STOCK)
+    query("ALL_ORDERS", ORDER)
 }

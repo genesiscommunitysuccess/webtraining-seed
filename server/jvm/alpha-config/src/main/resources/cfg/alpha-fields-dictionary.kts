@@ -44,5 +44,6 @@ fields {
     field("TRADING_VOLUME", type = DOUBLE)
     field("CEO", type = STRING)
 
-
+    field("NOTES", type = STRING)
+    field("ORDER_ID", type = STRING)
 }
