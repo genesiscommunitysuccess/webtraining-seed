@@ -53,20 +53,7 @@ export class StockRegistration extends FASTElement {
         this.displayStock.splice(indexdisplay,1)
         this.listOfStock.splice(indexdisplay,1)
         this.addToStockList()
-/*
-        this.listOfStock[indexlist].companyName = this.companyName
-        this.listOfStock[indexlist].symbol = this.symbol
-        this.listOfStock[indexlist].price = this.price
-        this.listOfStock[indexlist].tradingVolume = this.tradingVolume
-        this.listOfStock[indexlist].CEOName = this.CEOName
 
-        console.log(this.listOfStock)
-        console.log(this.selectStock)
-        this.listOfStock = [...this.listOfStock];
-        console.log(this.listOfStock)
-        console.log(this.selectStock)
-
-*/
 
         this.selectStock = String(this.listOfStock[indexlist].stockId)
         this.addToDisplay()
