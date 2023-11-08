@@ -1,17 +1,33 @@
 import {ZeroGridPro, zeroGridProTemplate} from '@genesislcap/foundation-zero-grid-pro';
-import {customElement, attr} from '@microsoft/fast-element';
+import {customElement, attr, observable} from '@microsoft/fast-element';
 import {trainingGridStyles} from './training-grid.styles';
-
+import { getActionsMenuDef } from '@genesislcap/grid-pro';
+import { TrainingGridTemplate } from './training-grid.template';
 
 @customElement({
   name: 'training-grid',
-  template: zeroGridProTemplate,
+  template: TrainingGridTemplate,
   styles: trainingGridStyles,
 })
 export class TrainingGrid extends ZeroGridPro {
-    @attr greeting: string
+    @attr resourceName: string;
 
-    emitEvent(){
-        this.$emit('traininggridevent',this.greeting)
-    }
+    @observable actionMenu = getActionsMenuDef(
+      [
+        {
+          name: 'View',
+          callback: rowData => console.log('VIEWW!!!'),
+        },
+        {
+          name: 'Delete',
+          callback: rowData => console.log('DELETE!!!'),
+        },
+      ],
+      {
+        headerName: 'Test Actions',
+        width: 140,
+      },
+      '+',
+    );
+
 }

@@ -14,12 +14,5 @@ export const ordersTemplate = html<Orders>`
         <foundation-form ${ref('newOrderForms')} resourceName="EVENT_ORDER_INSERT" @submit-success=${(x) => x.closeModal()}></foundation-form>
     </zero-modal>
 
-    <training-grid>
-        <grid-pro-genesis-datasource
-                  resource-name="ALL_ORDERS"
-        </grid-pro-genesis-datasource>
-        ${repeat(() => trainingGridColumnDefs, html`
-          <grid-pro-column :definition="${x => x}"></grid-pro-column>
-        `)}
-    </training-grid>
+    <training-grid resourceName="ALL_INSTRUMENTS"></training-grid>
 `;
