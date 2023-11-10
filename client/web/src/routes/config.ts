@@ -13,6 +13,7 @@ import {defaultLayout, loginLayout} from '../layouts';
 import {Home} from './home/home';
 import {NotFound} from './not-found/not-found';
 import {Reporting} from '@genesislcap/foundation-reporting';
+import {Playground} from './playground/playground';
 
 type RouterSettings = {
   autoAuth?: boolean;
@@ -30,6 +31,8 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
 
   public allRoutes = [
     {index: 1, path: 'home', title: 'Home', icon: 'home', variant: 'solid'},
+    {index: 2, path: 'report', title: 'Report', icon: 'home', variant: 'solid'},
+    {index: 3, path: 'playground', title: 'Playground', icon: 'gear', variant: 'solid'},
   ];
 
   public configure() {
@@ -66,6 +69,8 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
         childRouters: true,
       },
       {path: 'home', element: Home, title: 'Home', name: 'home', settings: commonSettings},
+      {path: 'report', element: Reporting, title: 'report', name: 'report', settings: commonSettings},
+      {path: 'playground', element: Playground, title: 'playground', name: 'playground', settings: commonSettings},
       {path: 'not-found', element: NotFound, title: 'Not Found', name: 'not-found'},
     );
 

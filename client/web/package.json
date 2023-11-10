@@ -1,6 +1,6 @@
 {
   "name": "@genesislcap/alpha-web-client",
-  "description": "WebDeveloper Training Client",
+  "description": "Developer Training Web Client",
   "version": "0.0.1",
   "private": true,
   "license": "Apache-2.0",
@@ -59,9 +59,12 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
+    "@genesislcap/alpha-design-system": "14.101.1",
+    "@genesislcap/design-system-configurator": "14.101.1",
     "@genesislcap/foundation-comms": "14.101.1",
     "@genesislcap/foundation-entity-management": "14.101.1",
     "@genesislcap/foundation-forms": "14.101.1",
+    "@genesislcap/foundation-reporting": "14.101.1",
     "@genesislcap/foundation-header": "14.101.1",
     "@genesislcap/foundation-layout": "14.101.1",
     "@genesislcap/foundation-login": "14.101.1",
@@ -69,7 +72,6 @@
     "@genesislcap/foundation-utils": "14.101.1",
     "@genesislcap/foundation-zero": "14.101.1",
     "@genesislcap/foundation-zero-grid-pro": "14.101.1",
-    "@genesislcap/foundation-reporting": "14.101.1",
     "@genesislcap/g2plot-chart": "14.101.1",
     "@microsoft/fast-components": "^2.21.6",
     "@microsoft/fast-element": "^1.7.0",
@@ -80,3 +82,11 @@
     "tslib": "^2.3.1"
   }
 }
+
+
+
+
+
+
+
+
