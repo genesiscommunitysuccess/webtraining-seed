@@ -13,7 +13,6 @@ import {defaultLayout, loginLayout} from '../layouts';
 import {Home} from './home/home';
 import {NotFound} from './not-found/not-found';
 import {Reporting} from '@genesislcap/foundation-reporting';
-import { Report } from './report/report'
 
 type RouterSettings = {
   autoAuth?: boolean;
