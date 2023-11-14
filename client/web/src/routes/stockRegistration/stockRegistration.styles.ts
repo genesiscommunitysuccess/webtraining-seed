@@ -2,6 +2,10 @@ import {css} from '@microsoft/fast-element';
 
 export const stockRegistrationStyles = css`
 
+    #Tab7 {
+        position: relative;
+    }
+
     #closeTab {
         position: absolute;
         top: 20px;
