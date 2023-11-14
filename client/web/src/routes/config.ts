@@ -17,6 +17,7 @@ import {Orders} from './orders/orders';
 import {Positions} from './positions/positions';
 import {Playground} from './playground/playground';
 import {UserRegistration} from './userRegistration/userRegistration';
+import {StockRegistration} from './stockRegistration/stockRegistration';
 
 type RouterSettings = {
   autoAuth?: boolean;
@@ -38,6 +39,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
     {index: 3, path: 'positions', title: 'Positions', icon: 'home', variant: 'solid'},
     {index: 4, path: 'playground', title: 'Playground', icon: 'gear', variant: 'solid'},
     {index: 5, path: 'userRegistration', title: 'User Registration', icon: 'user-plus', variant: 'solid'},
+    {index: 6, path: 'stockRegistration', title: 'Stock Registration', icon: 'money-bill', variant: 'solid'},
   ];
 
   public configure() {
@@ -78,6 +80,7 @@ export class MainRouterConfig extends RouterConfiguration<RouterSettings> {
       {path: 'positions', element: Positions, title: 'Home', name: 'home', settings: commonSettings},
       {path: 'playground', element: Playground, title: 'Home', name: 'home', settings: commonSettings},
       {path: 'userRegistration', element: UserRegistration, title: 'User Registration', name: 'userRegistration', settings: commonSettings},
+      {path: 'stockRegistration', element: StockRegistration, title: 'Stock Registration', name: 'stockRegistration', settings: commonSettings},
       {path: 'not-found', element: NotFound, title: 'Not Found', name: 'not-found'},
     );
 
