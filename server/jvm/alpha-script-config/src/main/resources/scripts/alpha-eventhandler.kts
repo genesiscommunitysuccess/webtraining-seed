@@ -1,13 +1,9 @@
-import java.io.File
-import java.time.LocalDate
 import global.genesis.TradeStateMachine
 import global.genesis.gen.dao.Trade
 import global.genesis.alpha.message.event.TradeAllocated
 import global.genesis.alpha.message.event.TradeCancelled
-import global.genesis.alpha.message.event.PositionReport
-import global.genesis.commons.standards.GenesisPaths
 import global.genesis.gen.view.repository.TradeViewAsyncRepository
-import global.genesis.jackson.core.GenesisJacksonMapper
+
 /**
  * System              : Genesis Business Library
  * Sub-System          : multi-pro-code-test Configuration
@@ -19,11 +15,12 @@ import global.genesis.jackson.core.GenesisJacksonMapper
  * Modification History
  */
 val tradeViewRepo = inject<TradeViewAsyncRepository>()
+
 eventHandler {
     val stateMachine = inject<TradeStateMachine>()
+
     eventHandler<Trade>(name = "TRADE_INSERT") {
         schemaValidation = false
-        permissionCodes = listOf("INSERT_TRADE")
         onValidate { event ->
             val message = event.details
             verify {
@@ -34,6 +31,7 @@ eventHandler {
         }
         onCommit { event ->
             val trade = event.details
+
             if (trade.quantity!! > 0) {
                 trade.enteredBy = event.userName
                 stateMachine.insert(entityDb, trade)
@@ -44,7 +42,9 @@ eventHandler {
             }
         }
     }
+
     eventHandler<Trade>(name = "TRADE_MODIFY", transactional = true) {
+        schemaValidation = false
         onValidate { event ->
             val message = event.details
             verify {
@@ -59,42 +59,49 @@ eventHandler {
             ack()
         }
     }
+
     eventHandler<Counterparty>(name = "COUNTERPARTY_INSERT", transactional = true) {
         onCommit { event ->
             entityDb.insert(event.details)
             ack()
         }
     }
+
     eventHandler<Counterparty>(name = "COUNTERPARTY_DELETE", transactional = true) {
         onCommit { event ->
             entityDb.delete(event.details)
             ack()
         }
     }
+
     eventHandler<Counterparty>(name = "COUNTERPARTY_MODIFY", transactional = true) {
         onCommit { event ->
             entityDb.modify(event.details)
             ack()
         }
     }
+
     eventHandler<Instrument>(name = "INSTRUMENT_INSERT", transactional = true) {
         onCommit { event ->
             entityDb.insert(event.details)
             ack()
         }
     }
+
     eventHandler<Instrument>(name = "INSTRUMENT_DELETE", transactional = true) {
         onCommit { event ->
             entityDb.delete(event.details)
             ack()
         }
     }
+
     eventHandler<Instrument>(name = "INSTRUMENT_MODIFY", transactional = true) {
         onCommit { event ->
             entityDb.modify(event.details)
             ack()
         }
     }
+
     eventHandler<TradeCancelled>(name = "TRADE_CANCELLED", transactional = true) {
         onCommit { event ->
             val message = event.details
@@ -104,6 +111,7 @@ eventHandler {
             ack()
         }
     }
+
     eventHandler<TradeAllocated>(name = "TRADE_ALLOCATED", transactional = true) {
         onCommit { event ->
             val message = event.details
@@ -113,30 +121,47 @@ eventHandler {
             ack()
         }
     }
-    eventHandler<PositionReport> {
-        schemaValidation = false
-        onCommit {
-            val mapper = GenesisJacksonMapper.csvWriter<TradeView>()
-            val today = LocalDate.now().toString()
-            val positionReportFolder = File(GenesisPaths.runtime()).resolve("position-minute-report")
-            if (!positionReportFolder.exists()) positionReportFolder.mkdirs()
-            tradeViewRepo.getBulk()
-                .toList()
-                .groupBy { it.counterpartyName }
-                .forEach { (counterParty, trades) ->
-                    val file = positionReportFolder.resolve("${counterParty}_$today.csv")
-                    if (file.exists()) file.delete()
-                    mapper.writeValues(file).use { it.writeAll(trades) }
-                }
+
+    eventHandler<Stock>(name = "STOCK_INSERT") {
+        onCommit { event ->
+            entityDb.insert(event.details)
+            ack()
+        }
+    }
+
+    eventHandler<Stock>(name = "STOCK_MODIFY") {
+        onCommit { event ->
+            entityDb.modify(event.details)
+            ack()
+        }
+    }
+
+    eventHandler<Stock>(name = "STOCK_DELETE") {
+        onCommit { event ->
+            entityDb.delete(event.details)
+            ack()
+        }
+    }
+
+    eventHandler<Order>(name = "ORDER_INSERT", transactional = true) {
+        schemaValidation =  false
+        onCommit { event ->
+            entityDb.insert(event.details)
+            ack()
+        }
+    }
+
+    eventHandler<Order>(name = "ORDER_MODIFY", transactional = true) {
+        onCommit { event ->
+            entityDb.modify(event.details)
+            ack()
+        }
+    }
+
+    eventHandler<Order>(name = "ORDER_CANCEL", transactional = true) {
+        onCommit { event ->
+            entityDb.delete(event.details)
             ack()
         }
     }
 }
-
-
-
-
-
-
-
-

@@ -24,4 +24,7 @@ requestReplies {
             row.instrumentId.equals(parameters.getString("INSTRUMENT_ID"))
         }
     }
+
+    requestReply("ALL_REQ_INSTRUMENTS", INSTRUMENT)
+    requestReply("ALL_REQ_TRADES", TRADE)
 }
