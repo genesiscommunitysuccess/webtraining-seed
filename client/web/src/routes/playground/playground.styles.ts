@@ -1,7 +1,16 @@
 import {css} from '@microsoft/fast-element';
 
 export const playgroundStyles = css`
-h2 {
-    color: red;
-}
+
+    #FormsModal {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+    }
+
+    .ScrollOn {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
 `;

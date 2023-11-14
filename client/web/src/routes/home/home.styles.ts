@@ -23,7 +23,6 @@ export const HomeStyles = css`
 
   .positions-card {
   flex: 1;
-  margin: calc(var(--design-unit) * 3px);
   }
 
   .card-title {
