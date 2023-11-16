@@ -11,6 +11,7 @@ export const positionsColumnDefs: any[] = [
 ];
 
 export const HomeTemplate = html<Home>`
+
 <div class="split-layout">
     <div class="top-layout">
         <entity-management
