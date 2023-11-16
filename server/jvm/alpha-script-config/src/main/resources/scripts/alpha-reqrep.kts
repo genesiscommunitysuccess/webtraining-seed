@@ -8,7 +8,9 @@
  *
  * Modification History
  */
+
 requestReplies {
+
     requestReply("INSTRUMENT_MARKET_DATA", INSTRUMENT_PRICE) {
 
         request {

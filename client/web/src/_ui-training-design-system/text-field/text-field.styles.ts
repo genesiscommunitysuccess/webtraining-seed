@@ -1,6 +1,9 @@
 import {foundationTextFieldStyles} from '@genesislcap/foundation-ui';
 import {css, ElementStyles} from '@microsoft/fast-element';
-import type {ElementDefinitionContext, FoundationElementDefinition} from '@microsoft/fast-foundation';
+import type {
+  ElementDefinitionContext,
+  FoundationElementDefinition,
+} from '@microsoft/fast-foundation';
 
 export const alphaTextFieldStyles = (
   context: ElementDefinitionContext,
@@ -9,8 +12,9 @@ export const alphaTextFieldStyles = (
   ${foundationTextFieldStyles(context, definition)}
   :host {
     display: flex;
-    width: 20%;
+    width: 200px;
     flex-direction: column;
+    caret-color : #3107ba;
 
   }
 
@@ -20,6 +24,5 @@ export const alphaTextFieldStyles = (
 
   :host .root {
     width: 100%;
-    color: #0000ff;
   }
 `;
